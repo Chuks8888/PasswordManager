@@ -1,9 +1,9 @@
 # ninja log v5
 1	477	7385463809333479	Manager_autogen/timestamp	a4cb0d749fb281a3
 1	477	7385463809333479	Manager_autogen/mocs_compilation.cpp	a4cb0d749fb281a3
+2016	2158	7385463826539111	Manager.exe	1004d93a89d46d80
 1	477	7385463809333479	C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/timestamp	a4cb0d749fb281a3
 1	477	7385463809333479	C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/mocs_compilation.cpp	a4cb0d749fb281a3
-478	1949	7385463824477239	CMakeFiles/Manager.dir/Manager_autogen/mocs_compilation.cpp.obj	12c66bc7dfcc5fa0
 479	1994	7385463824937660	CMakeFiles/Manager.dir/main.cpp.obj	fc4d7016338b740c
+478	1949	7385463824477239	CMakeFiles/Manager.dir/Manager_autogen/mocs_compilation.cpp.obj	12c66bc7dfcc5fa0
 481	2016	7385463825157858	CMakeFiles/Manager.dir/mainwindow.cpp.obj	2650c3a9c9b78308
-2016	2158	7385463826539111	Manager.exe	1004d93a89d46d80
