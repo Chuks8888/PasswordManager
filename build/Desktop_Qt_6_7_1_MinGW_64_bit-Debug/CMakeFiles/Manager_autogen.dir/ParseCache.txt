@@ -352,6 +352,10 @@ C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/mainwindow.h
  mdp:C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h
  mdp:C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/moc_predefs.h
  mdp:C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/mainwindow.h
+C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/main.cpp
 C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/mainwindow.cpp
  uic:./ui_mainwindow.h
-C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/main.cpp
+C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Mixing.h
+C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Sboxes.h
+C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/SBOX.cpp
+C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Mixing.cpp
