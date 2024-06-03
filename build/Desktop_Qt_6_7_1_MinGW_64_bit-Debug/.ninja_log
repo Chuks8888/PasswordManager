@@ -1,18 +1,11 @@
 # ninja log v5
-1	477	7385463809333479	Manager_autogen/timestamp	a4cb0d749fb281a3
-1	477	7385463809333479	Manager_autogen/mocs_compilation.cpp	a4cb0d749fb281a3
-2016	2158	7385463826539111	Manager.exe	1004d93a89d46d80
-1	477	7385463809333479	C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/timestamp	a4cb0d749fb281a3
-1	477	7385463809333479	C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/mocs_compilation.cpp	a4cb0d749fb281a3
-479	1994	7385463824937660	CMakeFiles/Manager.dir/main.cpp.obj	fc4d7016338b740c
+9	101	7387072446192092	Manager_autogen/timestamp	a4cb0d749fb281a3
+9	101	7387072446192092	Manager_autogen/mocs_compilation.cpp	a4cb0d749fb281a3
+1629	1770	7387072462847232	Manager.exe	7c33c09a4ac63801
+9	101	7387072446192092	C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/timestamp	a4cb0d749fb281a3
+9	101	7387072446192092	C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/mocs_compilation.cpp	a4cb0d749fb281a3
+112	1629	7387072461475986	CMakeFiles/Manager.dir/main.cpp.obj	fc4d7016338b740c
 478	1949	7385463824477239	CMakeFiles/Manager.dir/Manager_autogen/mocs_compilation.cpp.obj	12c66bc7dfcc5fa0
-481	2016	7385463825157858	CMakeFiles/Manager.dir/mainwindow.cpp.obj	2650c3a9c9b78308
-18	138	7386849854968443	Manager_autogen/timestamp	a4cb0d749fb281a3
-18	138	7386849854968443	Manager_autogen/mocs_compilation.cpp	a4cb0d749fb281a3
-18	138	7386849854968443	C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/timestamp	a4cb0d749fb281a3
-18	138	7386849854968443	C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/Manager_autogen/mocs_compilation.cpp	a4cb0d749fb281a3
+114	1623	7387072461415931	CMakeFiles/Manager.dir/mainwindow.cpp.obj	2650c3a9c9b78308
 155	584	7386849859432502	CMakeFiles/Manager.dir/SBOX.cpp.obj	862ceff807b3f695
-156	584	7386849859432502	CMakeFiles/Manager.dir/Mixing.cpp.obj	83cac603b379673f
-158	1708	7386849870652713	CMakeFiles/Manager.dir/mainwindow.cpp.obj	2650c3a9c9b78308
-152	1718	7386849870762809	CMakeFiles/Manager.dir/main.cpp.obj	fc4d7016338b740c
-1718	1985	7386849873415224	Manager.exe	7c33c09a4ac63801
+110	184	7387064898825187	CMakeFiles/Manager.dir/Mixing.cpp.obj	83cac603b379673f

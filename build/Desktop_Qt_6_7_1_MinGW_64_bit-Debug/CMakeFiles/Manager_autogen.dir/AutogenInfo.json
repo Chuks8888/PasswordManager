@@ -255,6 +255,12 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/KeySchedule.h",
+			"MU",
+			"EWIEGA46WW/moc_KeySchedule.cpp",
+			null
+		],
+		[
 			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Mixing.h",
 			"MU",
 			"EWIEGA46WW/moc_Mixing.cpp",
@@ -344,6 +350,11 @@
 	"SETTINGS_FILE" : "C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/CMakeFiles/Manager_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/KeySchedule.cpp",
+			"MU",
+			null
+		],
 		[
 			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Mixing.cpp",
 			"MU",
