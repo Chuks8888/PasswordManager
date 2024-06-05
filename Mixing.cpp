@@ -1,5 +1,7 @@
 #include "Mixing.h"
 #include "qswap.h"
+#include "KeySchedule.h"
+#include "Sboxes.h"
 
 // Funtction tested and works correctly
 void LeftShift(unsigned char text[])
@@ -63,7 +65,22 @@ void MixColumns(unsigned char text[])
     text[15] = matrixEl[3];
 }
 
+void Subbytes(unsigned char text[])
+{
+    for(int i=0;i<16;i++)
+    {
+        SBOX(text[i]);
+    }
+}
+
 void AddRoundKey(unsigned char text[])
 {
-    return;
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            text[(i*4) + j] ^= RoundKey[i][j];
+        }
+    }
+    KeySchedule();
 }

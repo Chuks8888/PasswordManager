@@ -9,8 +9,11 @@ unsigned char RoundKey[4][4];
 void RotWord(unsigned char KeyByte[]);
 void Rcon(unsigned char word[]);
 void CreateG(unsigned char word[], unsigned char origin[]);
-void KeySchedule(unsigned char Key[16]);
-void XorWords(unsigned char destination[], unsigned char first[], unsigned char second[]);
+
+void KeySchedule();
 void FillRoundKey(unsigned char word0[], unsigned char word1[], unsigned char word2[], unsigned char word3[]);
+
+void XorWords(unsigned char destination[], unsigned char first[], unsigned char second[]);
+
 
 #endif // KEYSCHEDULE_H

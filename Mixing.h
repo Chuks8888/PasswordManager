@@ -4,6 +4,7 @@
 void LeftShift(unsigned char []);
 void RightShift(unsigned char []);
 void MixColumns(unsigned char []);
-void AddRoundKey(int, unsigned char []);
+void Subbytes(unsigned char []);
+void AddRoundKey(unsigned char []);
 
 #endif // MIXING_H
