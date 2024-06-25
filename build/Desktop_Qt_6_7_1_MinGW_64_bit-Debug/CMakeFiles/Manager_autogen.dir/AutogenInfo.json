@@ -255,21 +255,21 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/AES.h",
+			"MU",
+			"EWIEGA46WW/moc_AES.cpp",
+			null
+		],
+		[
 			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/KeySchedule.h",
 			"MU",
 			"EWIEGA46WW/moc_KeySchedule.cpp",
 			null
 		],
 		[
-			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Mixing.h",
+			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Tables.h",
 			"MU",
-			"EWIEGA46WW/moc_Mixing.cpp",
-			null
-		],
-		[
-			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Sboxes.h",
-			"MU",
-			"EWIEGA46WW/moc_Sboxes.cpp",
+			"EWIEGA46WW/moc_Tables.cpp",
 			null
 		],
 		[
@@ -356,12 +356,7 @@
 			null
 		],
 		[
-			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/Mixing.cpp",
-			"MU",
-			null
-		],
-		[
-			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/SBOX.cpp",
+			"C:/Users/hugot/OneDrive/Dokumenty/QT Projects/Manager/RoundMethods.cpp",
 			"MU",
 			null
 		],

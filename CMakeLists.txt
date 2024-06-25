@@ -23,12 +23,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Manager
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        SBOX.cpp
-        Sboxes.h
-        Mixing.h
-        Mixing.cpp
+
+        Tables.h
+
+
         KeySchedule.cpp
         KeySchedule.h
+        AES.h
+        RoundMethods.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Manager APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
