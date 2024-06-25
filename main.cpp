@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-//#include "Mixing.h"
 //#include <iostream>
 #include <QApplication>
 

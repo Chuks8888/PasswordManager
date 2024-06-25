@@ -1,19 +1,24 @@
 #ifndef AES_H
 #define AES_H
-#include <QMatrix4x4>
+
+#include <vector>
 #include <iostream>
 class Rijndael
 {
 private:
-    std::string Message; // what we want to encrypt/decrypt (will change)
-    std::string Key; // will also be changed throught the encryption process
+
+    // Primary Parameters
+    std::string key;
+    std::vector<unsigned char> blocks; // 16 byte blocks of input message
 
     // encryption
-    void ShiftRows();
-    void MixColumns();
-    void Subbytes();
-    void AddRoundKey();
-    void KeySchedule();
+    void shiftRows();
+    void mixColumns();
+    void subbytes();
+    void addRoundKey();
+
+    // Round key managment
+    void keySchedule();
 
 public:
     Rijndael(std::string Input, std::string Key);
