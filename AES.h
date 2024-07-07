@@ -9,7 +9,7 @@ private:
 
     // Primary Parameters
     std::string key;
-    std::vector<unsigned char> blocks; // 16 byte blocks of input message
+    std::vector<unsigned char*> blocks; // 16 byte blocks of input message
 
     // encryption
     void shiftRows();
@@ -22,8 +22,15 @@ private:
 
 public:
     Rijndael(std::string Input, std::string Key);
-    void encrypt();
-    void decrypt();
+	~Rijndael();
+    //void encrypt();
+    //void decrypt();
+
+    // TESTING FUNCTIONS
+    void printBlocks();
+    void testMixColumns();
+    void testShiftRows();
+
 };
 
 #endif // AES_H

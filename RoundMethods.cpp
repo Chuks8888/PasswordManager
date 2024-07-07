@@ -2,6 +2,7 @@
 #include "Tables.h"
 #include "qswap.h"
 
+// Method confirmed to work
 void Rijndael::mixColumns()
 {
     // multiply each column of a single block by the matrix:
@@ -10,6 +11,8 @@ void Rijndael::mixColumns()
     // | 1, 1, 2, 3 |
     // [ 3, 1, 1, 2 ]
     unsigned char temp[4];
+
+    // blocks is the private parameter of the Rijndael class that holds the message
     for(auto& block : blocks)
     {
         for(int i = 0; i < 4; i++) // 4 columns - 4 iterations
@@ -22,11 +25,12 @@ void Rijndael::mixColumns()
 
             // assign calculated values to the column of the block
             for(int j = 0; j < 4; j++)
-                block[j] = temp[j];
+                block[j + column] = temp[j];
         }
     }
 }
 
+// Method confirmed to work
 void Rijndael::shiftRows()
 {
     for(auto& block : blocks)
@@ -41,11 +45,12 @@ void Rijndael::shiftRows()
         qSwap(block[6], block[14]);
 
         // Shift fourth row by three
-        qSwap(block[12], block[13]);
-        qSwap(block[12], block[14]);
-        qSwap(block[12], block[15]);
+        qSwap(block[3], block[7]);
+        qSwap(block[3], block[11]);
+        qSwap(block[3], block[15]);
     }
 }
+
 
 void Rijndael::subbytes()
 {
@@ -65,4 +70,31 @@ void Rijndael::addRoundKey()
         for(int i = 0; i < 16; i++)
             block[i] ^= key[i];
     }
+}
+
+std::vector<unsigned char>RconVal = {0x36, 0x1b, 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
+
+void Rijndael::keySchedule()
+{
+	unsigned char temporary[4];
+    // Take the fourth word of the key and shift it once to the left
+    // Also put the characters through Sbox
+	for(int i = 0; i < 3; i++)
+		temporary[i] = Sbox[(int)key[13+i]];
+	temporary[3] = Sbox[(int)key[12]];
+
+    // Then xor the first char with the Rcon Value
+	temporary[0] ^= RconVal.back();
+	RconVal.pop_back();
+
+    // Now do the key schedule by xoring the previous key words
+    // For further info check this link:
+    // https://braincoke.fr/blog/2020/08/the-aes-key-schedule-explained/#aes-key-schedule
+	int byte;
+	for(int i = 0; i < 16; i++)
+	{
+		byte = i&3;
+		key[i] ^= temporary[byte];
+		temporary[byte] = key[i];
+	}
 }

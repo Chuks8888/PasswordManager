@@ -27,8 +27,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Tables.h
 
 
-        KeySchedule.cpp
-        KeySchedule.h
+
+
         AES.h
         RoundMethods.cpp
         RijndaelPrimaryMethods.cpp
