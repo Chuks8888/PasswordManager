@@ -9,7 +9,7 @@ private:
 
     // Primary Parameters
     std::string key;
-    std::vector<unsigned char*> blocks; // 16 byte blocks of input message
+    std::vector<std::string> blocks; // 16 byte blocks of input message
 
     // encryption
     void shiftRows();

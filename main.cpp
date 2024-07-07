@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    std::string message ="\0";
+    std::string message ="";
     message += 0xdb;
     message += 0x13;
     message += 0x53;
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     Rijndael test(message, "ILOVESTARWARS<3!");
     //test.testMixColumns();
-    test.testShiftRows();
+    //test.testShiftRows();
     test.printBlocks();
 
     return a.exec();
