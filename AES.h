@@ -23,14 +23,11 @@ private:
 public:
     Rijndael(std::string Input, std::string Key);
 	~Rijndael();
-    //void encrypt();
+    void encrypt();
     //void decrypt();
 
     // TESTING FUNCTIONS
-    void printBlocks();
-    void testMixColumns();
-    void testShiftRows();
-
+    void printBlocks() const;
 };
 
 #endif // AES_H

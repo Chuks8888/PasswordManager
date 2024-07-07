@@ -3,40 +3,33 @@
 Rijndael::Rijndael(std::string Input, std::string Key)
 {
 	int bit = 0; // from 0 to 16
-    //unsigned char* temp = new unsigned char[16 + 1]; // allocating a block
-    std::string temp = "";
+    std::string temp = ""; // new block
 
 	for(int j = 0; j < Input.size(); j++) // iterating through all characters
 	{
 		// assigning characters from the input to the 16 byte block
-        //temp[bit] = Input[j];
         temp += Input[j];
 		bit++;
 
 		// when the temp is full
 		if(bit%16 == 0 && bit != 0) 
 		{
-            //temp[16] = '\0'; // set last character to be null
             temp += "\0";
-			blocks.push_back(temp); // push the block to the vector in the class 
-            //temp = new unsigned char[16 + 1]; // assign a new pointer to the temp parameter
-            temp = "";
+            blocks.push_back(temp); // push the block to the vector in the class
+            temp = ""; // reset the block for futher input
 			bit = 0; // reset the bit for the next block
 		}
 	}
+    // If the input does not reach 16 bytes, then fill the rest with whitespace char
     if(bit != 0 || !Input.size())
 	{
 		for(int j = bit; j < 16; j++)
-		{
             temp += " ";
-            //temp[j] = 32;
-		}
-        //temp[16] = '\0';
         temp += "\0";
         blocks.push_back(temp);
 	}
-    //temp = nullptr;
 
+    // Fill the key
 	key = Key;
     if(Key.size() < 16)
         for(int i = Key.size() - 1; i < 16; i++)
@@ -47,15 +40,11 @@ Rijndael::Rijndael(std::string Input, std::string Key)
 
 Rijndael::~Rijndael()
 {
-    /*for(auto& it : blocks)
-    {
-        delete[] it;
-    }*/
     blocks.clear();
     std::cout << "class destroyed\n";
 }
 
-void Rijndael::printBlocks()
+void Rijndael::printBlocks() const
 {
     for(const auto& it : blocks)
     {
@@ -68,12 +57,24 @@ void Rijndael::printBlocks()
     }
 }
 
-void Rijndael::testMixColumns()
+void Rijndael::encrypt()
 {
-    mixColumns();
-}
+    // Pre round transformation
+    addRoundKey();
+    keySchedule();
 
-void Rijndael::testShiftRows()
-{
+    // 9 rounds
+    for(int i = 0; i < 9; i++)
+    {
+        subbytes();
+        shiftRows();
+        mixColumns();
+        addRoundKey();
+        keySchedule();
+    }
+
+    // Last Round without mix Columns
+    subbytes();
     shiftRows();
+    addRoundKey();
 }

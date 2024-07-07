@@ -18,10 +18,10 @@ void Rijndael::mixColumns()
         for(int i = 0; i < 4; i++) // 4 columns - 4 iterations
         {
             int column = i * 4; // since a block has 16 elements, we need to iterate through each column by adding 4 * i
-            temp[0] = multiply2[(int)block[0 + column]] ^ multiply3[(int)block[1 + column]] ^ block[2 + column] ^ block[3 + column];
-            temp[1] = block[0 + column] ^ multiply2[(int)block[1 + column]] ^ multiply3[(int)block[2 + column]] ^ block[3 + column];
-            temp[2] = block[0 + column] ^ block[1 + column] ^ multiply2[(int)block[2 + column]] ^ multiply3[(int)block[3 + column]];
-            temp[3] = multiply3[(int)block[0 + column]] ^ block[1 + column] ^ block[2 + column] ^ multiply2[(int)block[3 + column]];
+            temp[0] = multiply2[(unsigned char)block[0 + column]] ^ multiply3[(unsigned char)block[1 + column]] ^ block[2 + column] ^ block[3 + column];
+            temp[1] = block[0 + column] ^ multiply2[(unsigned char)block[1 + column]] ^ multiply3[(unsigned char)block[2 + column]] ^ block[3 + column];
+            temp[2] = block[0 + column] ^ block[1 + column] ^ multiply2[(unsigned char)block[2 + column]] ^ multiply3[(unsigned char)block[3 + column]];
+            temp[3] = multiply3[(unsigned char)block[0 + column]] ^ block[1 + column] ^ block[2 + column] ^ multiply2[(unsigned char)block[3 + column]];
 
             // assign calculated values to the column of the block
             for(int j = 0; j < 4; j++)
@@ -58,7 +58,7 @@ void Rijndael::subbytes()
     {
         // Put every byte of the block matrix (4x4 = 16) through the S-box
         for(int i = 0; i < 16; i++)
-            block[i] = Sbox[(int)block[i]];
+            block[i] = Sbox[(unsigned char)block[i]];
     }
 }
 
@@ -68,7 +68,7 @@ void Rijndael::addRoundKey()
     {
         // XOR the block with the current key, both have 128 bits i.e. 16 bytes
         for(int i = 0; i < 16; i++)
-            block[i] ^= key[i];
+            block[i] ^= (unsigned char)key[i];
     }
 }
 
@@ -80,21 +80,19 @@ void Rijndael::keySchedule()
     // Take the fourth word of the key and shift it once to the left
     // Also put the characters through Sbox
 	for(int i = 0; i < 3; i++)
-		temporary[i] = Sbox[(int)key[13+i]];
-	temporary[3] = Sbox[(int)key[12]];
+        temporary[i] = Sbox[(unsigned char)key[13+i]];
+    temporary[3] = Sbox[(unsigned char)key[12]];
 
     // Then xor the first char with the Rcon Value
-	temporary[0] ^= RconVal.back();
+    temporary[0] ^= RconVal.back();
 	RconVal.pop_back();
 
     // Now do the key schedule by xoring the previous key words
     // For further info check this link:
     // https://braincoke.fr/blog/2020/08/the-aes-key-schedule-explained/#aes-key-schedule
-	int byte;
-	for(int i = 0; i < 16; i++)
+    for(int i = 0; i < 16; i++)
 	{
-		byte = i&3;
-		key[i] ^= temporary[byte];
-		temporary[byte] = key[i];
-	}
+        key[i] ^= temporary[i&3];
+        temporary[i&3] = key[i];
+    }
 }
