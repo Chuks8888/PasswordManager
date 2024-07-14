@@ -51,7 +51,7 @@ void Rijndael::shiftRows()
     }
 }
 
-
+// Works
 void Rijndael::subbytes()
 {
     for(auto& block : blocks)
@@ -62,16 +62,61 @@ void Rijndael::subbytes()
     }
 }
 
+// Works
 void Rijndael::addRoundKey()
 {
     for(auto& block : blocks)
     {
         // XOR the block with the current key, both have 128 bits i.e. 16 bytes
         for(int i = 0; i < 16; i++)
-            block[i] ^= (unsigned char)key[i];
+        {
+            block[i] ^= (unsigned char)roundKey[i];
+        }
     }
 }
 
+// Works
+void subWord(unsigned char word[])
+{
+    for(int i = 0; i < 4; i++)
+    {
+        word[i] = Sbox[(unsigned char)word[i]];
+    }
+}
+
+unsigned char Rconval[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36};
+
+// Works
+void Rijndael::keyschedule(int round)
+{
+    roundKey = "";
+    if(round%2 == 0)
+        for(int i = 16; i < 32; i++)
+            roundKey += key[i];
+    else {
+        unsigned char temporary[4];
+        for(int i = 0; i < 3; i++)
+            temporary[i] = key[29+i];
+        temporary[3] = key[28];
+        subWord(temporary);
+        temporary[0] ^= Rconval[round/2];
+
+        for(int i = 0; i < 16; i++)
+        {
+            roundKey += (key[i] ^= temporary[i&3]);
+            temporary[i&3] = key[i];
+        }
+        subWord(temporary);
+        for(int i = 16; i < 32; i++)
+        {
+            key[i] ^= temporary[i&3];
+            temporary[i&3] = key[i];
+        }
+    }
+}
+
+// OLD 128 bit key expansion
+/*
 std::vector<unsigned char>RconVal = {0x36, 0x1b, 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
 
 void Rijndael::keySchedule()
@@ -80,8 +125,9 @@ void Rijndael::keySchedule()
     // Take the fourth word of the key and shift it once to the left
     // Also put the characters through Sbox
 	for(int i = 0; i < 3; i++)
-        temporary[i] = Sbox[(unsigned char)key[13+i]];
-    temporary[3] = Sbox[(unsigned char)key[12]];
+        temporary[i] = key[13+i];
+    temporary[3] = key[12];
+    subWord(temporary);
 
     // Then xor the first char with the Rcon Value
     temporary[0] ^= RconVal.back();
@@ -93,6 +139,7 @@ void Rijndael::keySchedule()
     for(int i = 0; i < 16; i++)
 	{
         key[i] ^= temporary[i&3];
-        temporary[i&3] = key[i];
+        temporary[i&3] = key[i];   
     }
 }
+*/

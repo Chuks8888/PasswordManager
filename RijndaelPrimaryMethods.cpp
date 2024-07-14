@@ -2,6 +2,7 @@
 
 Rijndael::Rijndael(std::string Input, std::string Key)
 {
+    finished = false;
 	int bit = 0; // from 0 to 16
     std::string temp = ""; // new block
 
@@ -31,13 +32,15 @@ Rijndael::Rijndael(std::string Input, std::string Key)
 
     // Fill the key
 	key = Key;
-    if(Key.size() < 16)
-        for(int i = Key.size() - 1; i < 16; i++)
+    roundKey = Key;
+    if(Key.size() < 32)
+        for(int i = Key.size() - 1; i < 32; i++)
             Key[i] = 32;
 
+    encrypt();
+    finished = 1;
     std::cout << "class created" << std::endl;
 }
-
 Rijndael::~Rijndael()
 {
     blocks.clear();
@@ -61,20 +64,35 @@ void Rijndael::encrypt()
 {
     // Pre round transformation
     addRoundKey();
-    keySchedule();
+    keyschedule(0);
 
-    // 9 rounds
-    for(int i = 0; i < 9; i++)
+    // 13 rounds
+    for(int i = 1; i < 14; i++)
     {
         subbytes();
         shiftRows();
         mixColumns();
         addRoundKey();
-        keySchedule();
+        keyschedule(i);
     }
 
     // Last Round without mix Columns
     subbytes();
     shiftRows();
     addRoundKey();
+
+}
+
+std::string Rijndael::getmessage()
+{
+    if(finished)
+    {
+        std::string mes;
+        for(const auto& it : blocks)
+        {
+            mes += it;
+        }
+        return mes;
+    }
+    return " ";
 }

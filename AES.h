@@ -10,6 +10,9 @@ private:
     // Primary Parameters
     std::string key;
     std::vector<std::string> blocks; // 16 byte blocks of input message
+    std::string roundKey;
+
+    bool finished;
 
     // encryption
     void shiftRows();
@@ -19,12 +22,13 @@ private:
 
     // Round key managment
     void keySchedule();
+    void keyschedule(int round);
 
 public:
     Rijndael(std::string Input, std::string Key);
 	~Rijndael();
     void encrypt();
-    //void decrypt();
+    std::string getmessage();
 
     // TESTING FUNCTIONS
     void printBlocks() const;
