@@ -22,8 +22,8 @@ void MainWindow::on_pushButton_clicked()
                             "\x2d\x98\x10\xa3\x09\x14\xdf\xf4";
     std::string message ="Two One Nine Two";
     Rijndael test(message, keys);
-    test.printBlocks();
     QByteArray temp = QByteArray::fromStdString(test.getmessage());
+
     temp.toHex();
     ui->textBrowser->setText(temp);
 }

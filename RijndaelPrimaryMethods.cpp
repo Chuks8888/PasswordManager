@@ -39,25 +39,15 @@ Rijndael::Rijndael(std::string Input, std::string Key)
 
     encrypt();
     finished = 1;
-    std::cout << "class created" << std::endl;
+    for(auto& block : blocks)
+        for(int i = 0; i < 16; i++)
+            printf("%X ", (unsigned char)block[i]);
+    std::cerr << "text encrypted" << std::endl;
 }
 Rijndael::~Rijndael()
 {
     blocks.clear();
     std::cout << "class destroyed\n";
-}
-
-void Rijndael::printBlocks() const
-{
-    for(const auto& it : blocks)
-    {
-        for(int j = 0; j < 4; j++)
-        {
-            for(int i = j; i <= (16 - 4 + j); i+=4)
-                printf("%X ", (unsigned char)it[i]);
-            std::cout << std::endl;
-        }
-    }
 }
 
 void Rijndael::encrypt()
@@ -87,12 +77,12 @@ std::string Rijndael::getmessage()
 {
     if(finished)
     {
-        std::string mes;
+        std::string message;
         for(const auto& it : blocks)
         {
-            mes += it;
+            message += it;
         }
-        return mes;
+        return message;
     }
     return " ";
 }

@@ -2,22 +2,37 @@
 #include "Tables.h"
 #include "qswap.h"
 
-// Method confirmed to work
+/*/
+ * This source file contains all the functions
+ * used in the AES encryption rounds
+ * Each block of message is contained within
+ * a 16 byte string o unsigned char values
+ * The order of bytes in the message
+ * is like this:
+ * [ 0 4 8  12 ]
+ * | 1 5 9  13 |
+ * | 2 6 10 14 |
+ * [ 3 7 11 15 ]
+/*/
+
 void Rijndael::mixColumns()
 {
-    // multiply each column of a single block by the matrix:
-    // [ 2, 3, 1, 1 ]
-    // | 1, 2, 3, 1 |
-    // | 1, 1, 2, 3 |
-    // [ 3, 1, 1, 2 ]
+    // multiply the message by this matrix:
+    // [ 2 3 1 1 ]
+    // | 1 2 3 1 |
+    // | 1 1 2 3 |
+    // [ 3 1 1 2 ]
+
+    // temp array is one column
     unsigned char temp[4];
 
-    // blocks is the private parameter of the Rijndael class that holds the message
+    // iterate through all blocks of 16 byte messages
     for(auto& block : blocks)
     {
-        for(int i = 0; i < 4; i++) // 4 columns - 4 iterations
+        for(int i = 0; i < 4; i++) // 4 columns
         {
-            int column = i * 4; // since a block has 16 elements, we need to iterate through each column by adding 4 * i
+            // the 4 columns start with the numbers 0, 4, 8, 12 which is equal to i * 4
+            int column = i * 4;
             temp[0] = multiply2[(unsigned char)block[0 + column]] ^ multiply3[(unsigned char)block[1 + column]] ^ block[2 + column] ^ block[3 + column];
             temp[1] = block[0 + column] ^ multiply2[(unsigned char)block[1 + column]] ^ multiply3[(unsigned char)block[2 + column]] ^ block[3 + column];
             temp[2] = block[0 + column] ^ block[1 + column] ^ multiply2[(unsigned char)block[2 + column]] ^ multiply3[(unsigned char)block[3 + column]];
@@ -30,9 +45,9 @@ void Rijndael::mixColumns()
     }
 }
 
-// Method confirmed to work
 void Rijndael::shiftRows()
 {
+    // iterate through all blocks of 16 byte messages
     for(auto& block : blocks)
     {
         // Shift second row by one
@@ -51,9 +66,9 @@ void Rijndael::shiftRows()
     }
 }
 
-// Works
 void Rijndael::subbytes()
 {
+    // iterate through all blocks of 16 byte messages
     for(auto& block : blocks)
     {
         // Put every byte of the block matrix (4x4 = 16) through the S-box
@@ -62,7 +77,6 @@ void Rijndael::subbytes()
     }
 }
 
-// Works
 void Rijndael::addRoundKey()
 {
     for(auto& block : blocks)
@@ -75,7 +89,7 @@ void Rijndael::addRoundKey()
     }
 }
 
-// Works
+// Sbox but for the key schedule word
 void subWord(unsigned char word[])
 {
     for(int i = 0; i < 4; i++)
@@ -84,23 +98,41 @@ void subWord(unsigned char word[])
     }
 }
 
+// Rcon values for the key schedule
 unsigned char Rconval[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36};
 
-// Works
+/*/
+ * Key schedule is triggered every round
+ * depending on the round, the function
+ * either creates a set of two new round keys
+ * or simply assigns the second key that was
+ * generated the previous round
+/*/
 void Rijndael::keyschedule(int round)
 {
+    // Reset the round key
     roundKey = "";
+
     if(round%2 == 0)
+        // assign the second part of the previousl created key
         for(int i = 16; i < 32; i++)
             roundKey += key[i];
     else {
+        // Else create a set of two new keys
+        // temporary represents the g function
         unsigned char temporary[4];
+
+        // Shift the word by one to left
+        // then apply sbox and xor the
+        // first value with the Rconval
         for(int i = 0; i < 3; i++)
             temporary[i] = key[29+i];
         temporary[3] = key[28];
         subWord(temporary);
         temporary[0] ^= Rconval[round/2];
 
+        // Then xor the words based on the
+        // AES key expansion for 256 bit keys
         for(int i = 0; i < 16; i++)
         {
             roundKey += (key[i] ^= temporary[i&3]);
@@ -114,32 +146,3 @@ void Rijndael::keyschedule(int round)
         }
     }
 }
-
-// OLD 128 bit key expansion
-/*
-std::vector<unsigned char>RconVal = {0x36, 0x1b, 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
-
-void Rijndael::keySchedule()
-{
-	unsigned char temporary[4];
-    // Take the fourth word of the key and shift it once to the left
-    // Also put the characters through Sbox
-	for(int i = 0; i < 3; i++)
-        temporary[i] = key[13+i];
-    temporary[3] = key[12];
-    subWord(temporary);
-
-    // Then xor the first char with the Rcon Value
-    temporary[0] ^= RconVal.back();
-	RconVal.pop_back();
-
-    // Now do the key schedule by xoring the previous key words
-    // For further info check this link:
-    // https://braincoke.fr/blog/2020/08/the-aes-key-schedule-explained/#aes-key-schedule
-    for(int i = 0; i < 16; i++)
-	{
-        key[i] ^= temporary[i&3];
-        temporary[i&3] = key[i];   
-    }
-}
-*/

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+
 class Rijndael
 {
 private:
@@ -29,9 +30,6 @@ public:
 	~Rijndael();
     void encrypt();
     std::string getmessage();
-
-    // TESTING FUNCTIONS
-    void printBlocks() const;
 };
 
 #endif // AES_H
