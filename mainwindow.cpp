@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "AES.h"
+#include "randomGenerator.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,14 +17,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    std::string keys = "\x60\x3d\xeb\x10\x15\xca\x71\xbe"
-                            "\x2b\x73\xae\xf0\x85\x7d\x77\x81"
-                            "\x1f\x35\x2c\x07\x3b\x61\x08\xd7"
-                            "\x2d\x98\x10\xa3\x09\x14\xdf\xf4";
-    std::string message ="Two One Nine Two";
-    Rijndael test(message, keys);
-    QByteArray temp = QByteArray::fromStdString(test.getmessage());
+    unsigned char random[33];
+    randomString(random, 32);
+    std::string key;
 
+    for(int i = 0; i < 32; i++)
+    {
+        std::cout << random[i];
+        key += random[i];
+    }
+    std::cout << std::endl;
+
+    std::string message ="Two One Nine Two";
+    Rijndael test(message, key, 1);
+    Rijndael please(test.getmessage(), key, 0);
+
+
+    QByteArray temp = QByteArray::fromStdString(please.getmessage());
     temp.toHex();
     ui->textBrowser->setText(temp);
 }

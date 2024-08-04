@@ -11,24 +11,29 @@ private:
     // Primary Parameters
     std::string key;
     std::vector<std::string> blocks; // 16 byte blocks of input message
-    std::string roundKey;
+    std::vector<std::string> roundKey;
 
     bool finished;
+    bool mode;
 
     // encryption
     void shiftRows();
+    void invShiftRows();
     void mixColumns();
     void subbytes();
-    void addRoundKey();
+    void invSubbytes();
+    void addRoundKey(int round);
 
-    // Round key managment
-    void keySchedule();
-    void keyschedule(int round);
+    // Round key creation
+    void keyschedule();
+
+    // Mode
+    void encrypt();
+    void decrypt();
 
 public:
-    Rijndael(std::string Input, std::string Key);
+    Rijndael(std::string Input, std::string Key, bool Mode);
 	~Rijndael();
-    void encrypt();
     std::string getmessage();
 };
 

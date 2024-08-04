@@ -15,13 +15,50 @@
  * [ 3 7 11 15 ]
 /*/
 
+// galois field multpiplication
+uint8_t gmul(uint8_t a, uint8_t b)
+{
+    uint8_t result = 0;
+    for (int i = 0; i < 8; ++i) {
+        if (b & 1) {
+            result ^= a;
+        }
+        a = (a & 0x80) ? ((a << 1) ^ 0x1b) : (a << 1);
+        b >>= 1;
+    }
+    return result;
+}
+
+// galios field multiplication for a single byte of column
+unsigned char rowgmul(std::string block, int column, unsigned char* mixmatrix, int row){
+    return (
+        gmul((unsigned char)block[column], mixmatrix[row]) ^
+        gmul((unsigned char)block[1 + column], mixmatrix[row + 1]) ^
+        gmul((unsigned char)block[2 + column], mixmatrix[row + 2]) ^
+        gmul((unsigned char)block[3 + column], mixmatrix[row + 3]) );
+}
+
+unsigned char mixMatrix[16] = {
+    0x02, 0x03, 0x01, 0x01,
+    0x01, 0x02, 0x03, 0x01,
+    0x01, 0x01, 0x02, 0x03,
+    0x03, 0x01, 0x01, 0x02
+};
+
+unsigned char invMixMatrix[16] = {
+    0x0e, 0x0b, 0x0d, 0x09,
+    0x09, 0x0e, 0x0b, 0x0d,
+    0x0d, 0x09, 0x0e, 0x0b,
+    0x0b, 0x0d, 0x09, 0x0e
+};
+
 void Rijndael::mixColumns()
 {
-    // multiply the message by this matrix:
-    // [ 2 3 1 1 ]
-    // | 1 2 3 1 |
-    // | 1 1 2 3 |
-    // [ 3 1 1 2 ]
+    unsigned char* matrix;
+    if(mode)
+        matrix = mixMatrix;
+    else
+        matrix = invMixMatrix;
 
     // temp array is one column
     unsigned char temp[4];
@@ -33,10 +70,10 @@ void Rijndael::mixColumns()
         {
             // the 4 columns start with the numbers 0, 4, 8, 12 which is equal to i * 4
             int column = i * 4;
-            temp[0] = multiply2[(unsigned char)block[0 + column]] ^ multiply3[(unsigned char)block[1 + column]] ^ block[2 + column] ^ block[3 + column];
-            temp[1] = block[0 + column] ^ multiply2[(unsigned char)block[1 + column]] ^ multiply3[(unsigned char)block[2 + column]] ^ block[3 + column];
-            temp[2] = block[0 + column] ^ block[1 + column] ^ multiply2[(unsigned char)block[2 + column]] ^ multiply3[(unsigned char)block[3 + column]];
-            temp[3] = multiply3[(unsigned char)block[0 + column]] ^ block[1 + column] ^ block[2 + column] ^ multiply2[(unsigned char)block[3 + column]];
+
+            // calculating each column cell
+            for(int j = 0; j < 4; j++) // j represenst mix matrix row
+                temp[j] = rowgmul(block, column, matrix, j * 4);
 
             // assign calculated values to the column of the block
             for(int j = 0; j < 4; j++)
@@ -66,6 +103,27 @@ void Rijndael::shiftRows()
     }
 }
 
+void Rijndael::invShiftRows()
+{
+    for(auto& block : blocks)
+    {
+        // Inverse shift fourth row by three
+        qSwap(block[3], block[15]);
+        qSwap(block[3], block[11]);
+        qSwap(block[3], block[7]);
+
+        // Inverse shift third row by two
+        qSwap(block[2], block[10]);
+        qSwap(block[6], block[14]);
+
+        // Inverse shift second row by one
+        qSwap(block[9], block[13]);
+        qSwap(block[5], block[9]);
+        qSwap(block[1], block[5]);
+    }
+
+}
+
 void Rijndael::subbytes()
 {
     // iterate through all blocks of 16 byte messages
@@ -77,14 +135,27 @@ void Rijndael::subbytes()
     }
 }
 
-void Rijndael::addRoundKey()
+void Rijndael::invSubbytes()
 {
+    // iterate through all blocks of 16 byte messages
     for(auto& block : blocks)
     {
+        // Put every byte of the block matrix (4x4 = 16) through the inverse S-box
+        for(int i = 0; i < 16; i++)
+            block[i] = invSbox[(unsigned char)block[i]];
+    }
+}
+
+void Rijndael::addRoundKey(int round)
+{
+    std::string RoundKey = roundKey[round/2];
+    for(auto& block : blocks)
+    {
+        int part = round%2 == 0 ? 0 : 16;
         // XOR the block with the current key, both have 128 bits i.e. 16 bytes
         for(int i = 0; i < 16; i++)
         {
-            block[i] ^= (unsigned char)roundKey[i];
+            block[i] ^= (unsigned char)RoundKey[i + part];
         }
     }
 }
@@ -101,41 +172,26 @@ void subWord(unsigned char word[])
 // Rcon values for the key schedule
 unsigned char Rconval[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36};
 
-/*/
- * Key schedule is triggered every round
- * depending on the round, the function
- * either creates a set of two new round keys
- * or simply assigns the second key that was
- * generated the previous round
-/*/
-void Rijndael::keyschedule(int round)
+// Create round keys
+void Rijndael::keyschedule()
 {
-    // Reset the round key
-    roundKey = "";
-
-    if(round%2 == 0)
-        // assign the second part of the previousl created key
-        for(int i = 16; i < 32; i++)
-            roundKey += key[i];
-    else {
-        // Else create a set of two new keys
+    for(int i = 0; i < 7; i++)
+    {
         // temporary represents the g function
         unsigned char temporary[4];
 
-        // Shift the word by one to left
-        // then apply sbox and xor the
-        // first value with the Rconval
+        // assign g function
         for(int i = 0; i < 3; i++)
             temporary[i] = key[29+i];
         temporary[3] = key[28];
         subWord(temporary);
-        temporary[0] ^= Rconval[round/2];
+        temporary[0] ^= Rconval[i];
 
         // Then xor the words based on the
         // AES key expansion for 256 bit keys
         for(int i = 0; i < 16; i++)
         {
-            roundKey += (key[i] ^= temporary[i&3]);
+            key[i] ^= temporary[i&3];
             temporary[i&3] = key[i];
         }
         subWord(temporary);
@@ -144,5 +200,6 @@ void Rijndael::keyschedule(int round)
             key[i] ^= temporary[i&3];
             temporary[i&3] = key[i];
         }
+        roundKey.push_back(key);
     }
 }

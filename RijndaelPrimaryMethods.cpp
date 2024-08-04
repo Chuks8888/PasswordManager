@@ -1,8 +1,10 @@
 #include "AES.h"
 
-Rijndael::Rijndael(std::string Input, std::string Key)
+Rijndael::Rijndael(std::string Input, std::string Key, bool Mode)
 {
     finished = false;
+    mode = Mode;
+
 	int bit = 0; // from 0 to 16
     std::string temp = ""; // new block
 
@@ -28,22 +30,43 @@ Rijndael::Rijndael(std::string Input, std::string Key)
             temp += " ";
         temp += "\0";
         blocks.push_back(temp);
+        temp = "";
 	}
+    // Zero the original message
+    Input = "";
 
-    // Fill the key
-	key = Key;
-    roundKey = Key;
     if(Key.size() < 32)
         for(int i = Key.size() - 1; i < 32; i++)
             Key[i] = 32;
 
-    encrypt();
+    // Fill the key
+    key = "";
+    for(int i = 0; i < 32; i++)
+        key += Key[i];
+
+    roundKey.push_back(key);
+
+    // Zero the Key parameter
+    Key = "";
+
+    // which method
+    if(mode)
+        encrypt();
+    else
+        decrypt();
+
+    // Zero the keys
+    key = "";
+    roundKey.clear();
+
     finished = 1;
+
     for(auto& block : blocks)
         for(int i = 0; i < 16; i++)
             printf("%X ", (unsigned char)block[i]);
-    std::cerr << "text encrypted" << std::endl;
+    std::cout << "text encrypted" << std::endl;
 }
+
 Rijndael::~Rijndael()
 {
     blocks.clear();
@@ -52,9 +75,13 @@ Rijndael::~Rijndael()
 
 void Rijndael::encrypt()
 {
+    if(finished)
+        return;
+
+    keyschedule();
+
     // Pre round transformation
-    addRoundKey();
-    keyschedule(0);
+    addRoundKey(0);
 
     // 13 rounds
     for(int i = 1; i < 14; i++)
@@ -62,15 +89,39 @@ void Rijndael::encrypt()
         subbytes();
         shiftRows();
         mixColumns();
-        addRoundKey();
-        keyschedule(i);
+        addRoundKey(i);
+        //keyschedule(i);
     }
 
     // Last Round without mix Columns
     subbytes();
     shiftRows();
-    addRoundKey();
+    addRoundKey(14);
 
+}
+
+
+// Reverse the encryption
+void Rijndael::decrypt()
+{
+    if(finished)
+        return;
+
+    keyschedule();
+
+    addRoundKey(14);
+    invShiftRows();
+    invSubbytes();
+
+    for(int i = 13; i > 0; i--)
+    {
+        addRoundKey(i);
+        mixColumns();
+        invShiftRows();
+        invSubbytes();
+    }
+
+    addRoundKey(0);
 }
 
 std::string Rijndael::getmessage()
