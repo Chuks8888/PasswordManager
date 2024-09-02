@@ -516,11 +516,11 @@ Manager_autogen/timestamp: \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
+  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/AES.h \
   C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/CMakeLists.txt \
-  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/Mixing.cpp \
-  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/Mixing.h \
-  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/SBOX.cpp \
-  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/Sboxes.h \
+  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/RijndaelPrimaryMethods.cpp \
+  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/RoundMethods.cpp \
+  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/Tables.h \
   .qtc/package-manager/auto-setup.cmake \
   CMakeFiles/3.27.7/CMakeCXXCompiler.cmake \
   CMakeFiles/3.27.7/CMakeRCCompiler.cmake \
@@ -529,4 +529,6 @@ Manager_autogen/timestamp: \
   C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/main.cpp \
   C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/mainwindow.cpp \
   C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/mainwindow.h \
-  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/mainwindow.ui
+  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/mainwindow.ui \
+  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/randomGenerator.cpp \
+  C:/Users/hugot/OneDrive/Dokumenty/QT\ Projects/Manager/randomGenerator.h

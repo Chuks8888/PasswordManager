@@ -8,6 +8,15 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Message Line edit
+    auto& Message = ui->message;
+    Message->setPlaceholderText("message");
+
+    // Key input line edit
+    auto& Key = ui->keyInput;
+    Key->setPlaceholderText("key");
+    Key->setMaxLength(32);
 }
 
 MainWindow::~MainWindow()
@@ -17,23 +26,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    unsigned char random[33];
-    randomString(random, 32);
-    std::string key;
+    //unsigned char random[33];
+    //randomString(random, 32);
 
-    for(int i = 0; i < 32; i++)
+    if(ui->message->text() == "" || ui->keyInput->text() == "")
     {
-        std::cout << random[i];
-        key += random[i];
+        std::cout << "Missing parameters" << std::endl;
+        return;
     }
-    std::cout << std::endl;
 
-    std::string message ="Two One Nine Two";
-    Rijndael test(message, key, 1);
-    Rijndael please(test.getmessage(), key, 0);
+    std::string key = ui->keyInput->text().toStdString();
+    std::string message = ui->message->text().toStdString();
 
+    std::cout << "Key: " << key << std::endl;
+    std::cout << "Message: " << message << std::endl;
 
-    QByteArray temp = QByteArray::fromStdString(please.getmessage());
+    Rijndael encode(message, key, 1);
+    Rijndael decode(encode.getmessage(), key, 0);
+
+    QByteArray temp = QByteArray::fromStdString(decode.getmessage());
     temp.toHex();
     ui->textBrowser->setText(temp);
 }
