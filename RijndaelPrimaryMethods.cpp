@@ -12,7 +12,7 @@ Rijndael::Rijndael(std::string Input, std::string Key, bool Mode)
 	{
 		// assigning characters from the input to the 16 byte block
         temp += Input[j];
-		bit++;
+        bit++;
 
 		// when the temp is full
 		if(bit%16 == 0 && bit != 0) 
@@ -24,7 +24,7 @@ Rijndael::Rijndael(std::string Input, std::string Key, bool Mode)
 		}
 	}
     // If the input does not reach 16 bytes, then fill the rest with whitespace char
-    if(bit != 0 || !Input.size())
+    if(bit != 0)
 	{
 		for(int j = bit; j < 16; j++)
             temp += " ";
@@ -35,18 +35,14 @@ Rijndael::Rijndael(std::string Input, std::string Key, bool Mode)
     // Zero the original message
     Input = "";
 
-    if(Key.size() < 32)
-        for(int i = Key.size() - 1; i < 32; i++)
-            Key[i] = 32;
-
     // Fill the key
-    key = "";
-    for(int i = 0; i < 32; i++)
-        key += Key[i];
-
+    if(Key.size() < 32)
+        for(int i = Key.size(); i < 32; i++)
+            Key += 32;
+    key = Key;
     roundKey.push_back(key);
 
-    // Zero the Key parameter
+    // Zero the input Key parameter
     Key = "";
 
     // which method

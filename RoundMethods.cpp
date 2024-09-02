@@ -29,7 +29,7 @@ uint8_t gmul(uint8_t a, uint8_t b)
     return result;
 }
 
-// galios field multiplication for a single byte of column
+// galios field multiplication for a single byte of a column
 unsigned char rowgmul(std::string block, int column, unsigned char* mixmatrix, int row){
     return (
         gmul((unsigned char)block[column], mixmatrix[row]) ^
@@ -154,9 +154,7 @@ void Rijndael::addRoundKey(int round)
         int part = round%2 == 0 ? 0 : 16;
         // XOR the block with the current key, both have 128 bits i.e. 16 bytes
         for(int i = 0; i < 16; i++)
-        {
             block[i] ^= (unsigned char)RoundKey[i + part];
-        }
     }
 }
 
@@ -164,9 +162,7 @@ void Rijndael::addRoundKey(int round)
 void subWord(unsigned char word[])
 {
     for(int i = 0; i < 4; i++)
-    {
         word[i] = Sbox[(unsigned char)word[i]];
-    }
 }
 
 // Rcon values for the key schedule
