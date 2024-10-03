@@ -17,7 +17,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    unsigned char random[33];
+   /* unsigned char random[33];
     randomString(random, 32);
     std::string key;
 
@@ -37,6 +37,6 @@ void MainWindow::on_pushButton_clicked()
 
     //QByteArray temp = QByteArray::fromStdString(message);
     //temp.toHex();
-    //ui->textBrowser->setText(temp);
+    //ui->textBrowser->setText(temp);*/
 }
 
