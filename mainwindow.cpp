@@ -29,12 +29,14 @@ void MainWindow::on_pushButton_clicked()
     std::cout << std::endl;
 
     std::string message ="Two One Nine Two";
-    Rijndael test(message, key, 1);
-    Rijndael please(test.getmessage(), key, 0);
+    Rijndael test;
+    test.Use(message, key, 1);
+    std::cout << message << std::endl;
+    test.Use(message, key, 0);
+    std::cout << message << std::endl;
 
-
-    QByteArray temp = QByteArray::fromStdString(please.getmessage());
-    temp.toHex();
-    ui->textBrowser->setText(temp);
+    //QByteArray temp = QByteArray::fromStdString(message);
+    //temp.toHex();
+    //ui->textBrowser->setText(temp);
 }
 

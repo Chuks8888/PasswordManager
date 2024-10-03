@@ -6,7 +6,7 @@
  * This source file contains all the functions
  * used in the AES encryption rounds
  * Each block of message is contained within
- * a 16 byte string o unsigned char values
+ * a 16 byte string of unsigned char values
  * The order of bytes in the message
  * is like this:
  * [ 0 4 8  12 ]
