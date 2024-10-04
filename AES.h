@@ -10,13 +10,11 @@ private:
 
     // Primary Parameters
     std::string key;
-    std::vector<std::string> blocks; // 16 byte blocks of input message
+    std::vector<std::string> blocks;
     std::vector<std::string> roundKey;
-
-    bool finished;
     bool mode;
 
-    // encryption
+    // Algorithm methods
     void shiftRows();
     void invShiftRows();
     void mixColumns();
@@ -32,9 +30,10 @@ private:
     void decrypt();
 
 public:
-    Rijndael(std::string Input, std::string Key, bool Mode);
-	~Rijndael();
-    std::string getmessage();
+    void Use(std::string &Input, std::string Key, bool Mode); // Mode 1 - encrypt, 0 - decrypt
+    //Rijndael(std::string &Input, std::string Key, bool Mode); // Mode 1 - encrypt, 0 - decrypt
+    Rijndael();
+    ~Rijndael();
 };
 
 #endif // AES_H

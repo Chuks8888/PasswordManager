@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "AES.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,9 +19,19 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+
+    void on_ShowKey_toggled(bool checked);
+
+    void on_keyinput_textEdited(const QString &arg1);
+
+    void on_keyinput_returnPressed();
+
+    void on_LoginButton_clicked();
 
 private:
+
+    Rijndael AES;
+    bool firstOpen;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
