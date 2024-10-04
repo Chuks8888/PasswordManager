@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "AES.h"
+#include "keyswapper.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,6 +19,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void endloopsignal();
+
 private slots:
 
     void on_ShowKey_toggled(bool checked);
@@ -30,8 +34,10 @@ private slots:
 
 private:
 
-    Rijndael AES;
     bool firstOpen;
     Ui::MainWindow *ui;
+    keyswapper swapper;
+
+    void giveAwayKey();
 };
 #endif // MAINWINDOW_H

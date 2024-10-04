@@ -59,7 +59,7 @@ void Rijndael::Use(std::string &Input, std::string Key, bool Mode)
 
 Rijndael::~Rijndael()
 {
-    std::cout << "class destroyed";
+    std::cout << "class destroyed" << std::endl;
 }
 
 void Rijndael::encrypt()

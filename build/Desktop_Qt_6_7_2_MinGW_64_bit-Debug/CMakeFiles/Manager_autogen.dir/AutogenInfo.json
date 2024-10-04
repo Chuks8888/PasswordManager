@@ -263,9 +263,21 @@
 			null
 		],
 		[
+			"C:/Users/Hugo/git/PasswordManager/Libraries.h",
+			"MU",
+			"EWIEGA46WW/moc_Libraries.cpp",
+			null
+		],
+		[
 			"C:/Users/Hugo/git/PasswordManager/Tables.h",
 			"MU",
 			"EWIEGA46WW/moc_Tables.cpp",
+			null
+		],
+		[
+			"C:/Users/Hugo/git/PasswordManager/keyswapper.h",
+			"MU",
+			"EWIEGA46WW/moc_keyswapper.cpp",
 			null
 		],
 		[
@@ -358,6 +370,7 @@
 			null
 		],
 		[ "C:/Users/Hugo/git/PasswordManager/RoundMethods.cpp", "MU", null ],
+		[ "C:/Users/Hugo/git/PasswordManager/keyswapper.cpp", "MU", null ],
 		[ "C:/Users/Hugo/git/PasswordManager/main.cpp", "MU", null ],
 		[ "C:/Users/Hugo/git/PasswordManager/mainwindow.cpp", "MU", null ],
 		[ "C:/Users/Hugo/git/PasswordManager/randomGenerator.cpp", "MU", null ]
