@@ -116,30 +116,23 @@
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
-           <property name="sizeConstraint">
-            <enum>QLayout::SizeConstraint::SetNoConstraint</enum>
+          <widget class="QLineEdit" name="keyinput">
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
            </property>
-           <item>
-            <widget class="QLineEdit" name="keyinput">
-             <property name="sizeIncrement">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maxLength">
-              <number>32</number>
-             </property>
-             <property name="echoMode">
-              <enum>QLineEdit::EchoMode::Password</enum>
-             </property>
-             <property name="placeholderText">
-              <string>Key</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
+           <property name="maxLength">
+            <number>32</number>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::EchoMode::Password</enum>
+           </property>
+           <property name="placeholderText">
+            <string>Key</string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QCheckBox" name="ShowKey">
@@ -150,6 +143,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="LoginButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Go</string>
            </property>
@@ -174,7 +170,7 @@
      </widget>
     </widget>
     <widget class="QWidget" name="choice">
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>-10</x>
@@ -244,7 +240,7 @@
        <height>592</height>
       </size>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>0</x>

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "AES.h"
 #include "randomGenerator.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -8,6 +7,19 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    firstOpen = false;
+    FILE *file = fopen("data.txt", "r");
+    if(file)
+    {
+        firstOpen = true;
+        fclose(file);
+    }
+
+    if(!firstOpen)
+        ui->LoginInfo->setText("First entry, please enter new KEY (Max 32 characters)");
+
+    ui->keyinput->setDragEnabled(0);
 }
 
 MainWindow::~MainWindow()
@@ -15,28 +27,37 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_ShowKey_toggled(bool checked)
 {
-   /* unsigned char random[33];
-    randomString(random, 32);
-    std::string key;
+    auto& temp = ui->keyinput;
+    if(temp->echoMode() == temp->Password)
+        temp->setEchoMode(temp->Normal);
+    else
+        temp->setEchoMode(temp->Password);
+}
 
-    for(int i = 0; i < 32; i++)
+void MainWindow::on_keyinput_textEdited(const QString &arg1)
+{
+    if(arg1.isEmpty())
+        ui->LoginButton->setEnabled(0);
+    else
     {
-        std::cout << random[i];
-        key += random[i];
+        if(ui->LoginButton->isEnabled())
+            return;
+        else
+            ui->LoginButton->setEnabled(1);
     }
-    std::cout << std::endl;
+}
 
-    std::string message ="Two One Nine Two";
-    Rijndael test;
-    test.Use(message, key, 1);
-    std::cout << message << std::endl;
-    test.Use(message, key, 0);
-    std::cout << message << std::endl;
 
-    //QByteArray temp = QByteArray::fromStdString(message);
-    //temp.toHex();
-    //ui->textBrowser->setText(temp);*/
+void MainWindow::on_keyinput_returnPressed()
+{
+    emit ui->LoginButton->clicked(true);
+}
+
+
+void MainWindow::on_LoginButton_clicked()
+{
+    //
 }
 

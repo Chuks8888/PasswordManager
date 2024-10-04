@@ -9,17 +9,18 @@ int main(int argc, char *argv[])
     //w.show();
     //return a.exec();
     try {
+
         QApplication a(argc, argv);
         MainWindow w;
         w.show();
         return a.exec();
     }
     catch (const std::exception &e) {
-        QMessageBox::critical(nullptr, "Critical Error", e.what());  // Displays error message if an exception is caught
-        return -1;  // Return an error code
+        QMessageBox::critical(nullptr, "Critical Error", e.what());
+        return -1;
     }
     catch (...) {
-        QMessageBox::critical(nullptr, "Critical Error", "An unknown error occurred.");  // Catches non-standard exceptions
-        return -1;  // Return an error code
+        QMessageBox::critical(nullptr, "Critical Error", "An unknown error occurred.");
+        return -1;
     }
 }
