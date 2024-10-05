@@ -10,7 +10,7 @@ class keyswapper : public QThread
 public:
     keyswapper();
     void givekey(std::string);
-    void sendtext(std::string&, bool);
+    bool sendtext(std::string&, bool);
 
     // QThread interface
 protected:
@@ -18,6 +18,10 @@ protected:
 
 public slots:
     void endloopslot();
+
+private slots:
+    void threadStart();
+    void threadEnd();
 
 private:
     std::string key;

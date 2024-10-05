@@ -4,25 +4,29 @@
 keyswapper::keyswapper() {
     key = "";
     loop = false;
+
+    connect(this, &keyswapper::started, this, &keyswapper::threadStart);
+    connect(this, &keyswapper::finished, this, &keyswapper::threadEnd);
 }
 
 // give the key to the thread
 void keyswapper::givekey(std::string k)
 {
     if(loop == false)
-    {
         key = k;
-        loop = true;
-    }
 }
 
-void keyswapper::sendtext(std::string & text, bool mode)
+bool keyswapper::sendtext(std::string & text, bool mode)
 {
     if(loop == false)
     {
-        aes.Use(text, key, mode);
-        loop = true;
+        if(!key.empty())
+        {
+            aes.Use(text, key, mode);
+            return true;
+        }
     }
+    return false;
 }
 
 void keyswapper::run()
@@ -30,6 +34,7 @@ void keyswapper::run()
     if(key.empty())
         return;
 
+    loop = true;
     encryptor1 = randomkey();
     aes.Use(key, encryptor1, 1);
 
@@ -51,10 +56,24 @@ void keyswapper::run()
         }
     }
     aes.Use(key, encryptor1, 0);
+
+    /////// TEST COUT /////////
+    std::cout << key << std:: endl;
 }
 
 // turn off the thread loop
 void keyswapper::endloopslot()
 {
     loop = false;
+}
+
+// Both are testing functions
+void keyswapper::threadStart()
+{
+    std::cout<<"Resuming thread" << std::endl;
+}
+
+void keyswapper::threadEnd()
+{
+    std::cout<<"Thread stopped" << std::endl;
 }
