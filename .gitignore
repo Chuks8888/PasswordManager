@@ -39,6 +39,9 @@ Thumbs.db
 *.pro.user*
 CMakeLists.txt.user*
 
+# data file with passwords
+"C:\Users\Hugo\git\PasswordManager\build\Desktop_Qt_6_7_2_MinGW_64_bit-Debug\data.txt"
+
 # xemacs temporary files
 *.flc
 

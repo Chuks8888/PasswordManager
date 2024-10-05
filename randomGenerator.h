@@ -3,6 +3,6 @@
 
 #include "AES.h"
 
-void randomString(unsigned char* buffer, std::size_t lenght);
+std::string randomkey();
 
 #endif // RANDOMGENERATOR_H

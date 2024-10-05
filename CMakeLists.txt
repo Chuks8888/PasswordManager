@@ -34,6 +34,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         RijndaelPrimaryMethods.cpp
         randomGenerator.h
         randomGenerator.cpp
+        keyswapper.h keyswapper.cpp
+        Libraries.h
 
 
 
