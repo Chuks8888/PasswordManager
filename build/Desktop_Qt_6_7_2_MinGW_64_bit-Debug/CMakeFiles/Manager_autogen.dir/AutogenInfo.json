@@ -257,9 +257,15 @@
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/Hugo/git/PasswordManager/AES.h",
+			"C:/Users/Hugo/git/PasswordManager/Keyholder/keyswapper.h",
 			"MU",
-			"EWIEGA46WW/moc_AES.cpp",
+			"X6YGUZOFYQ/moc_keyswapper.cpp",
+			null
+		],
+		[
+			"C:/Users/Hugo/git/PasswordManager/Keyholder/randomString.h",
+			"MU",
+			"X6YGUZOFYQ/moc_randomString.cpp",
 			null
 		],
 		[
@@ -269,27 +275,21 @@
 			null
 		],
 		[
-			"C:/Users/Hugo/git/PasswordManager/Tables.h",
+			"C:/Users/Hugo/git/PasswordManager/Rijndael/Tables.h",
 			"MU",
-			"EWIEGA46WW/moc_Tables.cpp",
+			"2NFL7OFZRH/moc_Tables.cpp",
 			null
 		],
 		[
-			"C:/Users/Hugo/git/PasswordManager/keyswapper.h",
+			"C:/Users/Hugo/git/PasswordManager/Rijndael/rijndael.h",
 			"MU",
-			"EWIEGA46WW/moc_keyswapper.cpp",
+			"2NFL7OFZRH/moc_rijndael.cpp",
 			null
 		],
 		[
 			"C:/Users/Hugo/git/PasswordManager/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
-			null
-		],
-		[
-			"C:/Users/Hugo/git/PasswordManager/randomGenerator.h",
-			"MU",
-			"EWIEGA46WW/moc_randomGenerator.cpp",
 			null
 		]
 	],
@@ -365,15 +365,28 @@
 	"SOURCES" : 
 	[
 		[
-			"C:/Users/Hugo/git/PasswordManager/RijndaelPrimaryMethods.cpp",
+			"C:/Users/Hugo/git/PasswordManager/Keyholder/keyswapper.cpp",
 			"MU",
 			null
 		],
-		[ "C:/Users/Hugo/git/PasswordManager/RoundMethods.cpp", "MU", null ],
-		[ "C:/Users/Hugo/git/PasswordManager/keyswapper.cpp", "MU", null ],
+		[
+			"C:/Users/Hugo/git/PasswordManager/Keyholder/randomString.cpp",
+			"MU",
+			null
+		],
+		[ "C:/Users/Hugo/git/PasswordManager/Rijndael/rijndael.cpp", "MU", null ],
+		[
+			"C:/Users/Hugo/git/PasswordManager/Rijndael/roundMethods.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/Hugo/git/PasswordManager/StackedWidget/loginWidget.cpp",
+			"MU",
+			null
+		],
 		[ "C:/Users/Hugo/git/PasswordManager/main.cpp", "MU", null ],
-		[ "C:/Users/Hugo/git/PasswordManager/mainwindow.cpp", "MU", null ],
-		[ "C:/Users/Hugo/git/PasswordManager/randomGenerator.cpp", "MU", null ]
+		[ "C:/Users/Hugo/git/PasswordManager/mainwindow.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

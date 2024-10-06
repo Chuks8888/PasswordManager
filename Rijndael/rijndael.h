@@ -1,7 +1,7 @@
-#ifndef AES_H
-#define AES_H
+#ifndef RIJNDAEL_H
+#define RIJNDAEL_H
 
-#include "Libraries.h"
+#include "../Libraries.h"
 
 class Rijndael
 {
@@ -35,4 +35,4 @@ public:
     ~Rijndael();
 };
 
-#endif // AES_H
+#endif // RIJNDAEL_H

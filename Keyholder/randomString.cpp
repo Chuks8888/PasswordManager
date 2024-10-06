@@ -1,9 +1,6 @@
-#include "randomGenerator.h"
+#include "randomString.h"
 
-#include<windows.h>
-#include<wincrypt.h>
-
-std::string randomkey()
+std::string randomString()
 {
     int length = 32;
     unsigned char buffer[33];

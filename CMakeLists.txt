@@ -15,6 +15,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
+        StackedWidget/loginWidget.cpp
         mainwindow.h
         mainwindow.ui
 )
@@ -24,20 +25,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
 
-        Tables.h
-
-
-
-
-        AES.h
-        RoundMethods.cpp
-        RijndaelPrimaryMethods.cpp
-        randomGenerator.h
-        randomGenerator.cpp
-        keyswapper.h keyswapper.cpp
         Libraries.h
-
-
+        Rijndael/rijndael.h Rijndael/rijndael.cpp
+        Rijndael/roundMethods.cpp
+        Rijndael/Tables.h
+        Keyholder/keyswapper.h Keyholder/keyswapper.cpp
+        Keyholder/randomString.h
+        Keyholder/randomString.cpp
+        StackedWidget/loginWidget.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

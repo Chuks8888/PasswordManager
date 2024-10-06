@@ -1,5 +1,5 @@
 #include "keyswapper.h"
-#include "randomGenerator.h"
+#include "randomString.h"
 
 keyswapper::keyswapper() {
     key = "";
@@ -35,30 +35,32 @@ void keyswapper::run()
         return;
 
     loop = true;
-    encryptor1 = randomkey();
-    aes.Use(key, encryptor1, 1);
 
     while(loop)
     {
+        encryptor1 = randomString();
+        aes.Use(key, encryptor1, 1);
+
         for(int i = 0; i < 25; i++)
         {
-            encryptor2 = randomkey();
+            encryptor2 = randomString();
             aes.Use(encryptor1, encryptor2, 1);
 
             for(int j = 0; j < 125; j++)
             {
-                encryptor3 = randomkey();
+                encryptor3 = randomString();
                 aes.Use(encryptor2, encryptor3, 1);
                 aes.Use(encryptor2, encryptor3, 0);
             }
 
             aes.Use(encryptor1, encryptor2, 0);
         }
-    }
-    aes.Use(key, encryptor1, 0);
 
-    /////// TEST COUT /////////
-    std::cout << key << std:: endl;
+        aes.Use(key, encryptor1, 0);
+
+        /////// TEST COUT /////////
+        std::cerr << key << std:: endl;
+    }
 }
 
 // turn off the thread loop
@@ -77,3 +79,4 @@ void keyswapper::threadEnd()
 {
     std::cout<<"Thread stopped" << std::endl;
 }
+

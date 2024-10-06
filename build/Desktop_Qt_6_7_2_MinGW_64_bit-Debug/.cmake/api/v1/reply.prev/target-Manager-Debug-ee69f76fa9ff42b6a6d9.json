@@ -75,13 +75,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 78,
+				"line" : 72,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 61,
+				"line" : 55,
 				"parent" : 0
 			},
 			{
@@ -367,19 +367,20 @@
 				2,
 				7,
 				8,
-				10,
-				12
+				11,
+				13,
+				14
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "Manager_autogen::@6890427a1f51a3e7e1df"
+			"id" : "Manager_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "Manager_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "Manager_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "Manager::@6890427a1f51a3e7e1df",
@@ -494,8 +495,9 @@
 				2,
 				7,
 				8,
-				10,
-				12
+				11,
+				13,
+				14
 			]
 		},
 		{
@@ -506,9 +508,9 @@
 				5,
 				6,
 				9,
-				11,
-				13,
-				14
+				10,
+				12,
+				15
 			]
 		},
 		{
@@ -516,14 +518,14 @@
 			"sourceIndexes" : 
 			[
 				4,
-				15
+				16
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				16
+				17
 			]
 		}
 	],
@@ -560,52 +562,58 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "Tables.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"path" : "AES.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "RoundMethods.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "RijndaelPrimaryMethods.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"path" : "randomGenerator.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "randomGenerator.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"path" : "keyswapper.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "keyswapper.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
 			"path" : "Libraries.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Rijndael/rijndael.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Rijndael/rijndael.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Rijndael/roundMethods.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Rijndael/Tables.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Keyholder/keyswapper.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Keyholder/keyswapper.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Keyholder/randomString.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Keyholder/randomString.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "StackedWidget/loginWidget.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,

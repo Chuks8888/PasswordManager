@@ -54,7 +54,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="login">
      <property name="minimumSize">
@@ -246,7 +246,7 @@
         <x>0</x>
         <y>184</y>
         <width>781</width>
-        <height>111</height>
+        <height>140</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,3,2">
@@ -264,7 +264,23 @@
         </spacer>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1,2">
+        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,1,2">
+         <item>
+          <widget class="QLineEdit" name="domaininput">
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::EchoMode::Normal</enum>
+           </property>
+           <property name="placeholderText">
+            <string>Domain</string>
+           </property>
+          </widget>
+         </item>
          <item>
           <widget class="QLineEdit" name="usernameinput">
            <property name="sizeIncrement">
@@ -274,7 +290,7 @@
             </size>
            </property>
            <property name="echoMode">
-            <enum>QLineEdit::EchoMode::NoEcho</enum>
+            <enum>QLineEdit::EchoMode::Normal</enum>
            </property>
            <property name="placeholderText">
             <string>Username</string>
@@ -301,7 +317,7 @@
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2,1">
+          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2,0,1">
            <item>
             <widget class="QCheckBox" name="showpass">
              <property name="text">
@@ -323,7 +339,17 @@
             </spacer>
            </item>
            <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>back</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="submitbutton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Submit</string>
              </property>

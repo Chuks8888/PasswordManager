@@ -1,4 +1,4 @@
-#include "AES.h"
+#include "rijndael.h"
 #include "Tables.h"
 #include "qswap.h"
 
