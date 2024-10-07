@@ -33,6 +33,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Keyholder/randomString.h
         Keyholder/randomString.cpp
         StackedWidget/loginWidget.cpp
+        StackedWidget/createWidget.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

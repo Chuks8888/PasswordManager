@@ -52,11 +52,13 @@ void MainWindow::on_LoginButton_clicked()
     if(firstOpen)
     {
         std::ofstream file("data.txt");
-        file << input_hash;
+        file << input_hash << std::endl;
         file.close();
     }
     else
     {
+        //input_hash += "\n";
+
         // open the file and get the hash and then compare it
         std::ifstream file("data.txt");
 

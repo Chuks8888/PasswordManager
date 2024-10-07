@@ -42,7 +42,12 @@ private slots:
 
     void on_passwordinput_textEdited();
 
-    void on_pushButton_clicked();
+    void on_submitbutton_clicked();
+
+    void on_gobackbutton_clicked();
+
+signals:
+    void signalLoop();
 
 private:
 

@@ -778,6 +778,7 @@ Manager_autogen/timestamp: \
 	C:/Users/Hugo/git/PasswordManager/Rijndael/rijndael.cpp \
 	C:/Users/Hugo/git/PasswordManager/Rijndael/rijndael.h \
 	C:/Users/Hugo/git/PasswordManager/Rijndael/roundMethods.cpp \
+	C:/Users/Hugo/git/PasswordManager/StackedWidget/createWidget.cpp \
 	C:/Users/Hugo/git/PasswordManager/StackedWidget/loginWidget.cpp \
 	C:/Users/Hugo/git/PasswordManager/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake \
 	C:/Users/Hugo/git/PasswordManager/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/3.29.3/CMakeCXXCompiler.cmake \

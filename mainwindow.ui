@@ -54,7 +54,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="login">
      <property name="minimumSize">
@@ -339,7 +339,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="gobackbutton">
              <property name="text">
               <string>back</string>
              </property>
