@@ -60,6 +60,7 @@ void MainWindow::on_submitbutton_clicked()
 
     // save domain name
     save << ui->domaininput->text().toStdString() << std::endl;
+    addDomain(ui->domaininput->text());
 
     // get username and password
     std::string temp = ui->usernameinput->text().toStdString();

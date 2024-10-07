@@ -46,14 +46,22 @@ private slots:
 
     void on_gobackbutton_clicked();
 
+    void on_getpass_clicked();
+
+    void on_backbutton2_clicked();
+
 signals:
     void signalLoop();
 
 private:
 
     bool firstOpen;
+
     Ui::MainWindow *ui;
     keyswapper swapper;
+    QVBoxLayout *layout;
+
+    void addDomain(QString temp);
 
     void giveAwayKey();
 };
