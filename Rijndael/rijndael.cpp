@@ -1,4 +1,5 @@
-#include "AES.h"
+#include "rijndael.h"
+
 Rijndael::Rijndael(){
     std::cout << "class created" << std::endl;
 }
@@ -13,31 +14,31 @@ void Rijndael::Use(std::string &Input, std::string Key, bool Mode)
     int bit = 0;
     std::string temp = "";
     for(int j = 0; j < Input.size(); j++)
-	{
+    {
         temp += Input[j];
-		bit++;
+        bit++;
 
-		// when the temp is full
-		if(bit&16) 
-		{
+        // when the temp is full
+        if(bit&16)
+        {
             temp += "\0";
             blocks.push_back(temp);
             temp = "";
             bit = 0;
-		}
-	}
+        }
+    }
     // Zero the original message
     Input = "";
 
     // If the input does not reach 16 bytes, then fill the rest with whitespace char
     if(bit != 0)
-	{
-		for(int j = bit; j < 16; j++)
+    {
+        for(int j = bit; j < 16; j++)
             temp += " ";
         temp += "\0";
         blocks.push_back(temp);
         temp = "";
-	}
+    }
 
     // Create round Keys
     roundKey.push_back(key);
@@ -50,7 +51,7 @@ void Rijndael::Use(std::string &Input, std::string Key, bool Mode)
         decrypt();
 
     roundKey.clear();
-    
+
     // Fill the Input with the new text
     for(const auto& block : blocks)
         Input += block;

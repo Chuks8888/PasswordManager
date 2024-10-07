@@ -1,8 +1,8 @@
 #ifndef KEYSWAPPER_H
 #define KEYSWAPPER_H
 
-#include "Libraries.h"
-#include "AES.h"
+#include "../Libraries.h"
+#include "../Rijndael/rijndael.h"
 
 class keyswapper : public QThread
 {

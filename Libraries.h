@@ -4,6 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <windows.h>
+#include <wincrypt.h>
 #include <QObject>
 #include <QThread>
 #include <QCryptographicHash>

@@ -331,5 +331,5 @@ C:/Users/Hugo/git/PasswordManager/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Mana
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
-  C:/Users/Hugo/git/PasswordManager/AES.h \
-  C:/Users/Hugo/git/PasswordManager/Libraries.h
+  C:/Users/Hugo/git/PasswordManager/Libraries.h \
+  C:/Users/Hugo/git/PasswordManager/Rijndael/rijndael.h

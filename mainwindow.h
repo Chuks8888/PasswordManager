@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "AES.h"
-#include "keyswapper.h"
+#include "Keyholder/keyswapper.h"
+#include "./ui_mainwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,11 +19,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-signals:
-    void endloopsignal();
-
 private slots:
 
+    // Login screen Slots ////////////////////////////
     void on_ShowKey_toggled(bool checked);
 
     void on_keyinput_textEdited(const QString &arg1);
@@ -31,12 +29,39 @@ private slots:
     void on_keyinput_returnPressed();
 
     void on_LoginButton_clicked();
+    /////////////////////////////////////////////////
+    void on_createpass_clicked();
+
+    void on_showpass_toggled(bool checked);
+
+    void checkForAllParameters();
+
+    void on_domaininput_textEdited(const QString &arg1);
+
+    void on_usernameinput_textEdited(const QString &arg1);
+
+    void on_passwordinput_textEdited();
+
+    void on_submitbutton_clicked();
+
+    void on_gobackbutton_clicked();
+
+    void on_getpass_clicked();
+
+    void on_backbutton2_clicked();
+
+signals:
+    void signalLoop();
 
 private:
 
     bool firstOpen;
+
     Ui::MainWindow *ui;
     keyswapper swapper;
+    QVBoxLayout *layout;
+
+    void addDomain(QString temp);
 
     void giveAwayKey();
 };

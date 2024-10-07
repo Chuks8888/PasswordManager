@@ -1,5 +1,5 @@
 #include "keyswapper.h"
-#include "randomGenerator.h"
+#include "randomString.h"
 
 keyswapper::keyswapper() {
     key = "";
@@ -23,9 +23,11 @@ bool keyswapper::sendtext(std::string & text, bool mode)
         if(!key.empty())
         {
             aes.Use(text, key, mode);
+            std::cerr << true << std::endl;
             return true;
         }
     }
+    std::cerr << false << std::endl;
     return false;
 }
 
@@ -35,19 +37,20 @@ void keyswapper::run()
         return;
 
     loop = true;
-    encryptor1 = randomkey();
+
+    encryptor1 = randomString();
     aes.Use(key, encryptor1, 1);
 
     while(loop)
     {
         for(int i = 0; i < 25; i++)
         {
-            encryptor2 = randomkey();
+            encryptor2 = randomString();
             aes.Use(encryptor1, encryptor2, 1);
 
             for(int j = 0; j < 125; j++)
             {
-                encryptor3 = randomkey();
+                encryptor3 = randomString();
                 aes.Use(encryptor2, encryptor3, 1);
                 aes.Use(encryptor2, encryptor3, 0);
             }
@@ -55,10 +58,10 @@ void keyswapper::run()
             aes.Use(encryptor1, encryptor2, 0);
         }
     }
-    aes.Use(key, encryptor1, 0);
 
+    aes.Use(key, encryptor1, 0);
     /////// TEST COUT /////////
-    std::cout << key << std:: endl;
+    //std::cerr << key << std:: endl;
 }
 
 // turn off the thread loop
@@ -70,10 +73,11 @@ void keyswapper::endloopslot()
 // Both are testing functions
 void keyswapper::threadStart()
 {
-    std::cout<<"Resuming thread" << std::endl;
+    std::cerr<<"Starting thread" << std::endl;
 }
 
 void keyswapper::threadEnd()
 {
-    std::cout<<"Thread stopped" << std::endl;
+    std::cerr<<"Thread stopped" << std::endl;
 }
+
