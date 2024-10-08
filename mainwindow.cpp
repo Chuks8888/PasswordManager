@@ -8,8 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     layout = new QVBoxLayout(ui->stackedWidget->widget(2));
     if(layout != NULL)
+    {
         ui->scrollAreaWidgetContents->setLayout(layout);
-
+        layout->addStretch();
+    }
     // check if the fil with encrypted data exists
     // in order to see if its the first entry
     firstOpen = false;
@@ -22,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     if(firstOpen)
     {
         ui->LoginInfo->setText("First entry, please enter new KEY (Must be 32 characters)");
-        ui->getpass->setEnabled(0);
+        //ui->getpass->setEnabled(0);
     }
     else
     {
@@ -39,8 +41,9 @@ MainWindow::MainWindow(QWidget *parent)
         {
             if(i == 3)
             {
-                QPushButton* test = new QPushButton(QString::fromStdString(buffer), ui->stackedWidget->widget(2));
-                layout->insertWidget(index, test);
+                QPushButton* button = new QPushButton(QString::fromStdString(buffer), ui->stackedWidget->widget(2));
+                layout->insertWidget(index, button);
+                connect(button, &QPushButton::clicked, this, &MainWindow::dynamicButtonClicked);
                 index++;
                 i=0;
             }
@@ -52,6 +55,8 @@ MainWindow::MainWindow(QWidget *parent)
     // disable the drag and connect the stop signal to the slot
     ui->keyinput->setDragEnabled(0);
     connect(this, &MainWindow::signalLoop, &swapper, &keyswapper::endloopslot);
+
+    connect(&win, &copyWindow::signalForCopy, this, &MainWindow::askForCopy);
 }
 
 MainWindow::~MainWindow()
@@ -62,8 +67,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::addDomain(QString temp)
 {
-    QPushButton* test = new QPushButton(temp, ui->stackedWidget->widget(2));
-    layout->addWidget(test);
+    QPushButton* button = new QPushButton(temp, ui->stackedWidget->widget(2));
+    connect(button, &QPushButton::clicked, this, &MainWindow::dynamicButtonClicked);
+    layout->addWidget(button);
 }
 
 void MainWindow::on_createpass_clicked()
@@ -80,5 +86,18 @@ void MainWindow::on_getpass_clicked()
 void MainWindow::on_backbutton2_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->stackedWidget->widget(1));
+}
+
+void MainWindow::dynamicButtonClicked()
+{
+    QPushButton* temp = qobject_cast<QPushButton*>(sender());
+    std::cerr << temp->text().toStdString() << std::endl;
+    win.setWindowTitle(temp->text());
+    win.exec();
+}
+
+void MainWindow::askForCopy(bool choice)
+{
+    // Function that save the encrypted text to the clipboard
 }
 

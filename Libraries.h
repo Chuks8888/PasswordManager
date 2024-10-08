@@ -12,4 +12,5 @@
 #include <QByteArray>
 #include <QString>
 
+
 #endif // LIBRARIES_H

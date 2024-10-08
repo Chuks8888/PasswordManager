@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "Keyholder/keyswapper.h"
 #include "./ui_mainwindow.h"
+#include "copywindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,7 +22,6 @@ public:
 
 private slots:
 
-    // Login screen Slots ////////////////////////////
     void on_ShowKey_toggled(bool checked);
 
     void on_keyinput_textEdited(const QString &arg1);
@@ -29,7 +29,7 @@ private slots:
     void on_keyinput_returnPressed();
 
     void on_LoginButton_clicked();
-    /////////////////////////////////////////////////
+
     void on_createpass_clicked();
 
     void on_showpass_toggled(bool checked);
@@ -50,19 +50,33 @@ private slots:
 
     void on_backbutton2_clicked();
 
+    void dynamicButtonClicked();
+
+    void askForCopy(bool choice);
+
 signals:
+    // signal to stop the keyswapper
     void signalLoop();
 
 private:
-
+    // Boolean that checks for the frist use of app
     bool firstOpen;
 
     Ui::MainWindow *ui;
+    // Qthread that keeps the key and encryps/decrypts data
     keyswapper swapper;
+
+    // Layout for the scroll area when the user
+    // tries to copy their passwords
     QVBoxLayout *layout;
 
+    // Function for adding a button to the layout
     void addDomain(QString temp);
 
+    // Function for passing the key from the input to ther swapper qthread
     void giveAwayKey();
+
+    // Pop up window where the user copies the password and/or username
+    copyWindow win;
 };
 #endif // MAINWINDOW_H
