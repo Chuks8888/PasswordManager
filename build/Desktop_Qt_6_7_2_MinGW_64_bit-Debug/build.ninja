@@ -73,14 +73,6 @@ build CMakeFiles/Manager.dir/mainwindow.cpp.obj: CXX_COMPILER__Manager_unscanned
   OBJECT_DIR = CMakeFiles\Manager.dir
   OBJECT_FILE_DIR = CMakeFiles\Manager.dir
 
-build CMakeFiles/Manager.dir/StackedWidget/loginWidget.cpp.obj: CXX_COMPILER__Manager_unscanned_Debug C$:/Users/Hugo/git/PasswordManager/StackedWidget/loginWidget.cpp || cmake_object_order_depends_target_Manager
-  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\Manager.dir\StackedWidget\loginWidget.cpp.obj.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/Hugo/git/PasswordManager/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Manager_autogen/include -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
-  OBJECT_DIR = CMakeFiles\Manager.dir
-  OBJECT_FILE_DIR = CMakeFiles\Manager.dir\StackedWidget
-
 build CMakeFiles/Manager.dir/Rijndael/rijndael.cpp.obj: CXX_COMPILER__Manager_unscanned_Debug C$:/Users/Hugo/git/PasswordManager/Rijndael/rijndael.cpp || cmake_object_order_depends_target_Manager
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Manager.dir\Rijndael\rijndael.cpp.obj.d
@@ -113,6 +105,14 @@ build CMakeFiles/Manager.dir/Keyholder/randomString.cpp.obj: CXX_COMPILER__Manag
   OBJECT_DIR = CMakeFiles\Manager.dir
   OBJECT_FILE_DIR = CMakeFiles\Manager.dir\Keyholder
 
+build CMakeFiles/Manager.dir/StackedWidget/loginWidget.cpp.obj: CXX_COMPILER__Manager_unscanned_Debug C$:/Users/Hugo/git/PasswordManager/StackedWidget/loginWidget.cpp || cmake_object_order_depends_target_Manager
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Manager.dir\StackedWidget\loginWidget.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Hugo/git/PasswordManager/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Manager_autogen/include -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Manager.dir
+  OBJECT_FILE_DIR = CMakeFiles\Manager.dir\StackedWidget
+
 build CMakeFiles/Manager.dir/StackedWidget/createWidget.cpp.obj: CXX_COMPILER__Manager_unscanned_Debug C$:/Users/Hugo/git/PasswordManager/StackedWidget/createWidget.cpp || cmake_object_order_depends_target_Manager
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Manager.dir\StackedWidget\createWidget.cpp.obj.d
@@ -120,6 +120,22 @@ build CMakeFiles/Manager.dir/StackedWidget/createWidget.cpp.obj: CXX_COMPILER__M
   INCLUDES = -IC:/Users/Hugo/git/PasswordManager/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Manager_autogen/include -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
   OBJECT_DIR = CMakeFiles\Manager.dir
   OBJECT_FILE_DIR = CMakeFiles\Manager.dir\StackedWidget
+
+build CMakeFiles/Manager.dir/StackedWidget/passwordWidget.cpp.obj: CXX_COMPILER__Manager_unscanned_Debug C$:/Users/Hugo/git/PasswordManager/StackedWidget/passwordWidget.cpp || cmake_object_order_depends_target_Manager
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Manager.dir\StackedWidget\passwordWidget.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Hugo/git/PasswordManager/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Manager_autogen/include -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Manager.dir
+  OBJECT_FILE_DIR = CMakeFiles\Manager.dir\StackedWidget
+
+build CMakeFiles/Manager.dir/copywindow.cpp.obj: CXX_COMPILER__Manager_unscanned_Debug C$:/Users/Hugo/git/PasswordManager/copywindow.cpp || cmake_object_order_depends_target_Manager
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Manager.dir\copywindow.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Hugo/git/PasswordManager/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Manager_autogen/include -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Manager.dir
+  OBJECT_FILE_DIR = CMakeFiles\Manager.dir
 
 
 # =============================================================================
@@ -129,7 +145,7 @@ build CMakeFiles/Manager.dir/StackedWidget/createWidget.cpp.obj: CXX_COMPILER__M
 #############################################
 # Link the executable Manager.exe
 
-build Manager.exe: CXX_EXECUTABLE_LINKER__Manager_Debug CMakeFiles/Manager.dir/Manager_autogen/mocs_compilation.cpp.obj CMakeFiles/Manager.dir/main.cpp.obj CMakeFiles/Manager.dir/mainwindow.cpp.obj CMakeFiles/Manager.dir/StackedWidget/loginWidget.cpp.obj CMakeFiles/Manager.dir/Rijndael/rijndael.cpp.obj CMakeFiles/Manager.dir/Rijndael/roundMethods.cpp.obj CMakeFiles/Manager.dir/Keyholder/keyswapper.cpp.obj CMakeFiles/Manager.dir/Keyholder/randomString.cpp.obj CMakeFiles/Manager.dir/StackedWidget/createWidget.cpp.obj | C$:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a || Manager_autogen Manager_autogen_timestamp_deps
+build Manager.exe: CXX_EXECUTABLE_LINKER__Manager_Debug CMakeFiles/Manager.dir/Manager_autogen/mocs_compilation.cpp.obj CMakeFiles/Manager.dir/main.cpp.obj CMakeFiles/Manager.dir/mainwindow.cpp.obj CMakeFiles/Manager.dir/Rijndael/rijndael.cpp.obj CMakeFiles/Manager.dir/Rijndael/roundMethods.cpp.obj CMakeFiles/Manager.dir/Keyholder/keyswapper.cpp.obj CMakeFiles/Manager.dir/Keyholder/randomString.cpp.obj CMakeFiles/Manager.dir/StackedWidget/loginWidget.cpp.obj CMakeFiles/Manager.dir/StackedWidget/createWidget.cpp.obj CMakeFiles/Manager.dir/StackedWidget/passwordWidget.cpp.obj CMakeFiles/Manager.dir/copywindow.cpp.obj | C$:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a || Manager_autogen Manager_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a  C:/Qt/6.7.2/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

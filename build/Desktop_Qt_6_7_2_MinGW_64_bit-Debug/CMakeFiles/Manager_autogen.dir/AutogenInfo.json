@@ -287,6 +287,12 @@
 			null
 		],
 		[
+			"C:/Users/Hugo/git/PasswordManager/copywindow.h",
+			"MU",
+			"EWIEGA46WW/moc_copywindow.cpp",
+			null
+		],
+		[
 			"C:/Users/Hugo/git/PasswordManager/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -390,6 +396,12 @@
 			"MU",
 			null
 		],
+		[
+			"C:/Users/Hugo/git/PasswordManager/StackedWidget/passwordWidget.cpp",
+			"MU",
+			null
+		],
+		[ "C:/Users/Hugo/git/PasswordManager/copywindow.cpp", "MU", null ],
 		[ "C:/Users/Hugo/git/PasswordManager/main.cpp", "MU", null ],
 		[ "C:/Users/Hugo/git/PasswordManager/mainwindow.cpp", "MU", null ]
 	],

@@ -317,6 +317,9 @@
                <height>0</height>
               </size>
              </property>
+             <property name="maxLength">
+              <number>64</number>
+             </property>
              <property name="echoMode">
               <enum>QLineEdit::EchoMode::Normal</enum>
              </property>
@@ -333,6 +336,9 @@
                <height>0</height>
               </size>
              </property>
+             <property name="maxLength">
+              <number>64</number>
+             </property>
              <property name="echoMode">
               <enum>QLineEdit::EchoMode::Normal</enum>
              </property>
@@ -348,6 +354,9 @@
                <width>0</width>
                <height>0</height>
               </size>
+             </property>
+             <property name="maxLength">
+              <number>64</number>
              </property>
              <property name="echoMode">
               <enum>QLineEdit::EchoMode::Password</enum>

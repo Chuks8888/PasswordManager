@@ -6,11 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    layout = new QVBoxLayout(ui->stackedWidget->widget(2));
-    if(layout != NULL)
-        ui->scrollAreaWidgetContents->setLayout(layout);
+    //layout = new QVBoxLayout(ui->stackedWidget->widget(2));
+    ui->scrollAreaWidgetContents->setLayout(&layout);
+    layout.addStretch();
 
-    // check if the fil with encrypted data exists
+    // check if the file with encrypted data exists
     // in order to see if its the first entry
     firstOpen = false;
     FILE *file = fopen("data.txt", "r");
@@ -20,50 +20,24 @@ MainWindow::MainWindow(QWidget *parent)
         fclose(file);
 
     if(firstOpen)
-    {
         ui->LoginInfo->setText("First entry, please enter new KEY (Must be 32 characters)");
-        ui->getpass->setEnabled(0);
-    }
     else
-    {
-        std::ifstream domains("data.txt");
-        std::string buffer;
+        setupLayout();
 
-        // first getline is to skip the hash
-        getline(domains, buffer);
-        getline(domains, buffer);
-
-        int index = 0;
-        int i = 3;
-        while(!domains.eof())
-        {
-            if(i == 3)
-            {
-                QPushButton* test = new QPushButton(QString::fromStdString(buffer), ui->stackedWidget->widget(2));
-                layout->insertWidget(index, test);
-                index++;
-                i=0;
-            }
-            getline(domains, buffer);
-            i++;
-        }
-        domains.close();
-    }
     // disable the drag and connect the stop signal to the slot
     ui->keyinput->setDragEnabled(0);
+
+    // Signal to end swapping loop
     connect(this, &MainWindow::signalLoop, &swapper, &keyswapper::endloopslot);
+
+    // Signal to copy one of the parametes (password or username)
+    connect(&win, &copyWindow::signalForCopy, this, &MainWindow::askForCopy);
 }
 
 MainWindow::~MainWindow()
 {
     swapper.terminate();
     delete ui;
-}
-
-void MainWindow::addDomain(QString temp)
-{
-    QPushButton* test = new QPushButton(temp, ui->stackedWidget->widget(2));
-    layout->addWidget(test);
 }
 
 void MainWindow::on_createpass_clicked()
@@ -73,12 +47,51 @@ void MainWindow::on_createpass_clicked()
 
 void MainWindow::on_getpass_clicked()
 {
-    if(layout != NULL)
-        ui->stackedWidget->setCurrentWidget(ui->stackedWidget->widget(2));
+    ui->stackedWidget->setCurrentWidget(ui->stackedWidget->widget(2));
 }
 
-void MainWindow::on_backbutton2_clicked()
+void MainWindow::askForCopy(bool choice, std::string domain)
 {
-    ui->stackedWidget->setCurrentWidget(ui->stackedWidget->widget(1));
+    // Function that save the encrypted text to the clipboard
+    std::ifstream data("data.txt");
+    std::string buffer;
+
+    data.ignore(256, '\n');
+    getline(data, buffer);
+
+    while(!data.eof())
+    {
+        if(!buffer.compare(domain))
+        {
+            if(choice)
+                data.ignore(64, '\n');
+
+            getline(data, buffer);
+            QByteArray temp = QByteArray::fromHex(QByteArray::fromStdString(buffer));
+
+            buffer = temp.toStdString();
+            temp.clear();
+
+            // tell the keyswapping loop to stop
+            emit signalLoop();
+            if(!swapper.isFinished())
+                swapper.wait();
+
+            // ask for encryption and start the swapper again
+            swapper.sendtext(buffer, 0);
+            swapper.start();
+            while(!swapper.isRunning()){
+                //std::cerr << 0 << std::endl;
+            };
+
+            std::cerr << buffer << std::endl;
+            break;
+        }
+        data.ignore(64, '\n');
+        data.ignore(64, '\n');
+        getline(data, buffer);
+    }
+
+    data.close();
 }
 

@@ -3,6 +3,12 @@
 
 #include "../Libraries.h"
 
+/* Object of class Rijndael is
+ * the one responsible for the AES algorithm,
+ * one can pass the key and the text to
+ * either encrypt it or decrypt it
+ */
+
 class Rijndael
 {
 private:

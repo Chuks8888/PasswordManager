@@ -15,7 +15,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
-        StackedWidget/loginWidget.cpp
         mainwindow.h
         mainwindow.ui
 )
@@ -34,6 +33,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Keyholder/randomString.cpp
         StackedWidget/loginWidget.cpp
         StackedWidget/createWidget.cpp
+        StackedWidget/passwordWidget.cpp
+        copywindow.h copywindow.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
