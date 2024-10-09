@@ -69,6 +69,7 @@ private:
     // Layout for the scroll area when the user
     // tries to copy their passwords
     QVBoxLayout layout;
+    void setupLayout();
 
     // Function for adding a button to the layout
     void addDomain(QString temp);

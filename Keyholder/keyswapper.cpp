@@ -5,8 +5,9 @@ keyswapper::keyswapper() {
     key = "";
     loop = false;
 
-    connect(this, &keyswapper::started, this, &keyswapper::threadStart);
-    connect(this, &keyswapper::finished, this, &keyswapper::threadEnd);
+    // test
+    // connect(this, &keyswapper::started, this, &keyswapper::threadStart);
+    // connect(this, &keyswapper::finished, this, &keyswapper::threadEnd);
 }
 
 // give the key to the thread
@@ -16,6 +17,7 @@ void keyswapper::givekey(std::string k)
         key = k;
 }
 
+// Function for the use of the AES algorithm
 bool keyswapper::sendtext(std::string & text, bool mode)
 {
     if(loop == false)
@@ -23,11 +25,11 @@ bool keyswapper::sendtext(std::string & text, bool mode)
         if(!key.empty())
         {
             aes.Use(text, key, mode);
-            std::cerr << true << std::endl;
+            // std::cerr << true << std::endl;
             return true;
         }
     }
-    std::cerr << false << std::endl;
+    // std::cerr << false << std::endl;
     return false;
 }
 
@@ -38,9 +40,13 @@ void keyswapper::run()
 
     loop = true;
 
+    // Encrypt the key with random key
     encryptor1 = randomString();
     aes.Use(key, encryptor1, 1);
 
+    // Review this code !!!!!
+    // I think the real key shoudl be decrypted,
+    // not the other random keys
     while(loop)
     {
         for(int i = 0; i < 25; i++)
