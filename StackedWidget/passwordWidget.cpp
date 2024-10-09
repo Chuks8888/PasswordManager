@@ -5,20 +5,16 @@ void MainWindow::setupLayout()
     std::ifstream domains("data.txt");
     std::string buffer;
 
-    // first getline is to skip the hash
-    getline(domains, buffer);
+    // ignore the hash and get domain name
+    domains.ignore(256, '\n');
     getline(domains, buffer);
 
-    int i = 4;
     while(!domains.eof())
     {
-        if(i & 4)
-        {
-            addDomain(QString::fromStdString(buffer));
-            i = 1;
-        }
+        addDomain(QString::fromStdString(buffer));
+        domains.ignore(64, '\n');
+        domains.ignore(64, '\n');
         getline(domains, buffer);
-        i++;
     }
     domains.close();
 }
@@ -35,13 +31,13 @@ void MainWindow::addDomain(QString temp)
 
 void MainWindow::on_backbutton2_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->stackedWidget->widget(1));
+    if(ui->stackedWidget->widget(1))
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidget->widget(1));
 }
 
 void MainWindow::dynamicButtonClicked()
 {
     QPushButton* temp = qobject_cast<QPushButton*>(sender());
-    std::cerr << temp->text().toStdString() << std::endl;
     win.setWindowTitle(temp->text());
     win.exec();
 }

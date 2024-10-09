@@ -1,4 +1,5 @@
 #include "copywindow.h"
+#include "iostream"
 
 copyWindow::copyWindow()
 {
@@ -18,15 +19,15 @@ copyWindow::copyWindow()
 
 copyWindow::~copyWindow()
 {
-    //std::cerr << "deleting pop-up window object" << std::endl;
+    std::cerr << "deleting pop-up window object" << std::endl;
 }
 
 void copyWindow::passClicked()
 {
-    emit signalForCopy(1);
+    emit signalForCopy(1, this->windowTitle().toStdString());
 }
 
 void copyWindow::userClicked()
 {
-    emit signalForCopy(0);
+    emit signalForCopy(0, this->windowTitle().toStdString());
 }

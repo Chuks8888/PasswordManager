@@ -25,7 +25,7 @@ private:
 signals:
     // this is the signals the method in MainWindow
     // that one of the button was pressed
-    void signalForCopy(bool);
+    void signalForCopy(bool, std::string);
 private slots:
     void passClicked();
     void userClicked();

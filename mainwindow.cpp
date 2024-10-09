@@ -50,10 +50,48 @@ void MainWindow::on_getpass_clicked()
     ui->stackedWidget->setCurrentWidget(ui->stackedWidget->widget(2));
 }
 
-
-
-void MainWindow::askForCopy(bool choice)
+void MainWindow::askForCopy(bool choice, std::string domain)
 {
     // Function that save the encrypted text to the clipboard
+    std::ifstream data("data.txt");
+    std::string buffer;
+
+    data.ignore(256, '\n');
+    getline(data, buffer);
+
+    while(!data.eof())
+    {
+        if(!buffer.compare(domain))
+        {
+            if(choice)
+                data.ignore(64, '\n');
+
+            getline(data, buffer);
+            QByteArray temp = QByteArray::fromHex(QByteArray::fromStdString(buffer));
+
+            buffer = temp.toStdString();
+            temp.clear();
+
+            // tell the keyswapping loop to stop
+            emit signalLoop();
+            if(!swapper.isFinished())
+                swapper.wait();
+
+            // ask for encryption and start the swapper again
+            swapper.sendtext(buffer, 0);
+            swapper.start();
+            while(!swapper.isRunning()){
+                //std::cerr << 0 << std::endl;
+            };
+
+            std::cerr << buffer << std::endl;
+            break;
+        }
+        data.ignore(64, '\n');
+        data.ignore(64, '\n');
+        getline(data, buffer);
+    }
+
+    data.close();
 }
 

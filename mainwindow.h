@@ -52,7 +52,7 @@ private slots:
 
     void dynamicButtonClicked();
 
-    void askForCopy(bool choice);
+    void askForCopy(bool choice, std::string);
 
 signals:
     // signal to stop the keyswapper
