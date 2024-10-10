@@ -34,7 +34,7 @@ void Rijndael::Use(std::string &Input, std::string Key, bool Mode)
     if(bit != 0)
     {
         for(int j = bit; j < 16; j++)
-            temp += " ";
+            temp += ' ';
         temp += "\0";
         blocks.push_back(temp);
         temp = "";

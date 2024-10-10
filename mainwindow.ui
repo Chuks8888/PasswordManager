@@ -343,7 +343,7 @@
               <enum>QLineEdit::EchoMode::Normal</enum>
              </property>
              <property name="placeholderText">
-              <string>Username</string>
+              <string>Username (No Spaces)</string>
              </property>
             </widget>
            </item>
@@ -365,7 +365,7 @@
               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
              </property>
              <property name="placeholderText">
-              <string>Password</string>
+              <string>Password (No Spaces)</string>
              </property>
             </widget>
            </item>

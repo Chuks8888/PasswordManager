@@ -5,6 +5,8 @@
 #include "Keyholder/keyswapper.h"
 #include "./ui_mainwindow.h"
 #include "copywindow.h"
+#include <QClipboard>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -70,6 +72,10 @@ private:
     // tries to copy their passwords
     QVBoxLayout layout;
     void setupLayout();
+
+    // clipboard object and the function for it
+    QClipboard *clip;
+    void copyToClipboard(QString text);
 
     // Function for adding a button to the layout
     void addDomain(QString temp);
