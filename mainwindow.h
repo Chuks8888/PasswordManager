@@ -5,6 +5,8 @@
 #include "Keyholder/keyswapper.h"
 #include "./ui_mainwindow.h"
 #include "copywindow.h"
+#include <QClipboard>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,6 +36,8 @@ private slots:
 
     void on_showpass_toggled(bool checked);
 
+    // This method checks if all parameters are
+    // met when creating a new entry
     void checkForAllParameters();
 
     void on_domaininput_textEdited(const QString &arg1);
@@ -42,6 +46,8 @@ private slots:
 
     void on_passwordinput_textEdited();
 
+    // slot that submits the new entry to the
+    // data file
     void on_submitbutton_clicked();
 
     void on_gobackbutton_clicked();
@@ -70,6 +76,10 @@ private:
     // tries to copy their passwords
     QVBoxLayout layout;
     void setupLayout();
+
+    // clipboard object and the function for it
+    QClipboard *clip;
+    void copyToClipboard(QString text);
 
     // Function for adding a button to the layout
     void addDomain(QString temp);

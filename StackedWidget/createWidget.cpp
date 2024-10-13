@@ -38,19 +38,23 @@ void MainWindow::on_submitbutton_clicked()
     // Firstly we check if the domain is unique
     std::ifstream file("data.txt");
 
+
     std::string buffer;
-    getline(file, buffer);
+    file.ignore(256, '\n');
     getline(file, buffer);
 
     while(!file.eof())
     {
+        // compare domain names
         if(!buffer.compare(ui->domaininput->text().toStdString()))
         {
             ui->domaininput->clear();
             file.close();
-            std::cerr << "Repeating domain" << std::endl;
+            // std::cerr << "Repeating domain" << std::endl;
             return;
         }
+        file.ignore(64, '\n');
+        file.ignore(64, '\n');
         getline(file, buffer);
     }
     file.close();
@@ -71,7 +75,7 @@ void MainWindow::on_submitbutton_clicked()
     if(!swapper.isFinished())
         swapper.wait();
 
-    // ask for encryption and start the swapper agains
+    // ask for encryption and start the swapper again
     swapper.sendtext(temp, 1);
     swapper.sendtext(temp2, 1);
     swapper.start();

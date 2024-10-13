@@ -2,6 +2,7 @@
 
 void MainWindow::setupLayout()
 {
+    // setup the buttons
     std::ifstream domains("data.txt");
     std::string buffer;
 
@@ -23,6 +24,7 @@ void MainWindow::addDomain(QString temp)
 {
     static int index = 0;
 
+    // add the button to the widget and layout
     QPushButton* button = new QPushButton(temp, ui->stackedWidget->widget(2));
     connect(button, &QPushButton::clicked, this, &MainWindow::dynamicButtonClicked);
     layout.insertWidget(index, button);
@@ -37,6 +39,7 @@ void MainWindow::on_backbutton2_clicked()
 
 void MainWindow::dynamicButtonClicked()
 {
+    // when the domain button is clicked, open the qdialog
     QPushButton* temp = qobject_cast<QPushButton*>(sender());
     win.setWindowTitle(temp->text());
     win.exec();

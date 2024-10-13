@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //layout = new QVBoxLayout(ui->stackedWidget->widget(2));
+    // setup the scroll area
     ui->scrollAreaWidgetContents->setLayout(&layout);
     layout.addStretch();
 
@@ -32,6 +32,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Signal to copy one of the parametes (password or username)
     connect(&win, &copyWindow::signalForCopy, this, &MainWindow::askForCopy);
+
+    clip = QApplication::clipboard();
+    //clip->setText("lubie jesc ciastka z marmolada i");
 }
 
 MainWindow::~MainWindow()
@@ -84,8 +87,11 @@ void MainWindow::askForCopy(bool choice, std::string domain)
                 //std::cerr << 0 << std::endl;
             };
 
-            std::cerr << buffer << std::endl;
-            break;
+            buffer.erase(std::remove(buffer.begin(), buffer.end(), ' '), buffer.end());
+            copyToClipboard(QString::fromStdString(buffer));
+            buffer = "";
+            // std::cerr << buffer << std::endl;
+                break;
         }
         data.ignore(64, '\n');
         data.ignore(64, '\n');
@@ -95,3 +101,14 @@ void MainWindow::askForCopy(bool choice, std::string domain)
     data.close();
 }
 
+void MainWindow::copyToClipboard(QString text)
+{
+    // Set the text in the clipboard
+    clip->setText(text);
+
+    // Clear clipboard after 5 seconds
+    QTimer::singleShot(5000, this, [this]() {
+        clip->clear();
+        //std::cerr<< "Clipboard cleared." << std::endl;
+    });
+}
