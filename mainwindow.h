@@ -36,6 +36,8 @@ private slots:
 
     void on_showpass_toggled(bool checked);
 
+    // This method checks if all parameters are
+    // met when creating a new entry
     void checkForAllParameters();
 
     void on_domaininput_textEdited(const QString &arg1);
@@ -44,6 +46,8 @@ private slots:
 
     void on_passwordinput_textEdited();
 
+    // slot that submits the new entry to the
+    // data file
     void on_submitbutton_clicked();
 
     void on_gobackbutton_clicked();

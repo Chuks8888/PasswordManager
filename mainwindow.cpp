@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //layout = new QVBoxLayout(ui->stackedWidget->widget(2));
+    // setup the scroll area
     ui->scrollAreaWidgetContents->setLayout(&layout);
     layout.addStretch();
 
@@ -105,11 +105,10 @@ void MainWindow::copyToClipboard(QString text)
 {
     // Set the text in the clipboard
     clip->setText(text);
-    std::cerr << "Text copied to clipboard: " << text.toStdString() << std::endl;
 
     // Clear clipboard after 5 seconds
     QTimer::singleShot(5000, this, [this]() {
         clip->clear();
-        std::cerr<< "Clipboard cleared." << std::endl;
+        //std::cerr<< "Clipboard cleared." << std::endl;
     });
 }

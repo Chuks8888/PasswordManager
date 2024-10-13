@@ -3,6 +3,8 @@
 
 #include "../Libraries.h"
 
+// This is the function that creates a random string of bytes
+// that uses wincrypt
 std::string randomString();
 
 

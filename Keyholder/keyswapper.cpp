@@ -6,8 +6,8 @@ keyswapper::keyswapper() {
     loop = false;
 
     // test
-    connect(this, &keyswapper::started, this, &keyswapper::threadStart);
-    connect(this, &keyswapper::finished, this, &keyswapper::threadEnd);
+    // connect(this, &keyswapper::started, this, &keyswapper::threadStart);
+    // connect(this, &keyswapper::finished, this, &keyswapper::threadEnd);
 }
 
 // give the key to the thread
@@ -25,11 +25,11 @@ bool keyswapper::sendtext(std::string & text, bool mode)
         if(!key.empty())
         {
             aes.Use(text, key, mode);
-            std::cerr << "encrypted/decrypted" << std::endl;
+            // std::cerr << "encrypted/decrypted" << std::endl;
             return true;
         }
     }
-    std::cerr << "not used" << std::endl;
+    // std::cerr << "not used" << std::endl;
     return false;
 }
 
@@ -66,8 +66,6 @@ void keyswapper::run()
     }
 
     aes.Use(key, encryptor1, 0);
-    /////// TEST COUT /////////
-    //std::cerr << key << std:: endl;
 }
 
 // turn off the thread loop
